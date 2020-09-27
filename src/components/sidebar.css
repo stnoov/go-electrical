@@ -29,7 +29,7 @@
 }
 
 .sidenav .logoIcon {
-    margin-bottom: -7px;
+    margin-bottom: -6px;
 }
 
 .sidenav .loginForm {
@@ -37,7 +37,7 @@
     width: 270px;
     border: 1px solid rgb(211, 217, 222);
     border-radius: 3px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 15px 20px;
 }
 

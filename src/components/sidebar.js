@@ -1,14 +1,20 @@
 import React from "react";
 import './sidebar.css'
 import CropDinIcon from '@material-ui/icons/CropDin';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 export default function Sidebar() {
+
+    const [menuVisibility, setMenuVisibility] = React.useState("shown")
+
     return (
 
-        <div className="sidenav">
+        <div className="sidenav" style={{visibility: menuVisibility}}>
             <h2 className="logo" style={{
-                display: 'flex',
-                alignItems: 'center'
-            }}><CropDinIcon className="logoIcon" /> | GoElectrical</h2>
+                display: 'inline',
+                alignItems: 'center',
+                marginRight: '100px'
+            }}><CropDinIcon className="logoIcon" /> | GoElectrical</h2> <ArrowBackIcon onClick={() => setMenuVisibility("hidden")} style={{display: 'inline'}}/>
             <div className="loginForm">
                 <input type="text" placeholder='Phone or E-mail'/>
                 <input type="text" placeholder='Password'/>
