@@ -18,8 +18,8 @@ const options = {
     zoomControl: true
 }
 
-function Map() {
-    const [selectedStation, setSelectedStation] = React.useState(null)
+function Map(props) {
+
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: 'AIzaSyAcGZ0vhjGlVA0UZdmIUH76b_JacMm4A-c'
@@ -35,7 +35,7 @@ function Map() {
                 options={options}
             >
                 {StationsData.stations.map((station) => <Marker
-                        onClick={() => {setSelectedStation(station)}}
+                        onClick={() => {props.setSelectedStation(station)}}
                         position={{lat: station.lat, lng: station.lng}}
                         icon={{
                             url: chargingStationPicture,
@@ -45,23 +45,23 @@ function Map() {
                 )
                 }
 
-                {selectedStation ? (<InfoWindow position={{lat: selectedStation.lat, lng: selectedStation.lng}} onCloseClick={() => {
-                    setSelectedStation(null)
+                {props.selectedStation ? (<InfoWindow position={{lat: props.selectedStation.lat, lng: props.selectedStation.lng}} onCloseClick={() => {
+                    props.setSelectedStation(null)
                 }}>
                     <div>
-                        <h2>{selectedStation.stationName}</h2>
-                        <h4>{selectedStation.address}</h4>
+                        <span style={{fontSize: '18px', fontWeight: '600'}}>{props.selectedStation.stationName}</span><br/>
+                        <span style={{fontSize: '14px', fontWeight: '400'}}>{props.selectedStation.address}</span>
                         <table>
                             <tr>
                                 <td>Price:</td>
-                                <td>{selectedStation.price}€/minute</td>
+                                <td>{props.selectedStation.price}€/minute</td>
                             </tr>
                             <tr>
                                 <td>
                                     Power:
                                 </td>
                                 <td>
-                                    {selectedStation.power} kWh
+                                    {props.selectedStation.power} kWh
                                 </td>
                             </tr>
                             <tr>
@@ -69,7 +69,7 @@ function Map() {
                                     Type:
                                 </td>
                                 <td>
-                                    {selectedStation.type}
+                                    {props.selectedStation.type}
                                 </td>
                             </tr>
                         </table>

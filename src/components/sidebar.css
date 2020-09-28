@@ -11,16 +11,47 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.headerIcon {
+    background-color: #3CB371;
+    padding: 5px;
+    cursor: pointer;
+    height: 22px !important;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.headerSearchInput {
+    height: 12px;
+    padding: 10px;
+    border: none;
+    width: 270px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.headerSearch {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidenav .navBlock {
+    margin-top: 50px;
+
+}
+
 .sidenav .sidenavLink {
     padding: 7px 18px 9px 16px;
     text-decoration: none;
-    font-size: 22px;
-    color: #111;
-    display: block;
+    font-size: 18px;
+    color: rgb(129, 140, 153);
+    display: flex;
+    align-items: center;
 }
 
 .sidenav .sidenavLink:hover {
-    background-color: gray;
+    cursor: pointer;
+    background-color: rgb(211, 217, 222);
 }
 
 .sidenav .logo {
@@ -32,46 +63,45 @@
     margin-bottom: -6px;
 }
 
-.sidenav .loginForm {
+.sidebarToggle {
+    position: absolute;
+    top: 1.5rem;
+    left: 1rem;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+.sidenav .chargingBlock {
     display: block;
     width: 270px;
     border: 1px solid rgb(211, 217, 222);
     border-radius: 3px;
     margin: 20px auto;
     padding: 15px 20px;
+    text-align: center;
+
+}
+.chargingBlock .chargingBlockTitle {
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.loginForm input {
-    font-family: Roboto, serif;
-    width: 244px;
-    padding: 6px 12px;
-    margin-bottom: 15px;
-    border: 1px solid rgb(211, 217, 222);
-    border-radius: 3px;
-}
-
-.loginForm .loginButtons button, .loginForm .loginButtons p {
-    display: inline;
+.chargingBlock .chargingBlockAddress {
     font-size: 14px;
 }
 
-.loginButtons button {
-    margin-right: 40px;
+.chargingBlock .chargingBlockDetails {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 80px;
 }
 
-.signInButton {
-    font-family: Roboto, serif;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.registerButton {
+.startButton {
+    margin-top: 10px;
     font-family: Roboto, serif;
     display: block;
     width: 100%;
@@ -83,31 +113,6 @@
     cursor: pointer;
     text-align: center;
     border-radius: 3px;
-}
-
-.sidenav .bottomBlock {
-    font-family: Roboto, serif;
-    text-align: center;
-    font-size: 13px;
-    color: rgb(129, 140, 153);
-    position: absolute;
-    bottom: 50px;
-    border: 1px solid rgb(211, 217, 222);
-    border-radius: 3px;
-    margin-left: 19px;
-    padding: 15px 20px;
-    width: 270px;
-}
-
-.sidebarToggle {
-    position: absolute;
-    top: 1.5rem;
-    left: 1rem;
-    z-index: 10;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-
 }
 
 

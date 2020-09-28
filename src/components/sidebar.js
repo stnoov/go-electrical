@@ -3,11 +3,14 @@ import './sidebar.css'
 import CropDinIcon from '@material-ui/icons/CropDin';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import SearchIcon from '@material-ui/icons/Search'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HistoryIcon from '@material-ui/icons/History';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
-export default function Sidebar() {
-
+export default function Sidebar(props) {
     const [menuVisibility, setMenuVisibility] = React.useState("shown")
-
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
     return (
@@ -25,29 +28,48 @@ export default function Sidebar() {
                 setMenuVisibility("hidden")
                 setToggleVisibility("visible")
             }} style={{display: 'inline', cursor: 'pointer'}}/>
-                <div className="loginForm">
-                    <input type="text" placeholder='Phone or E-mail'/>
-                    <input type="text" placeholder='Password'/>
-                    <div className="loginButtons">
-                        <button className="signInButton">Log in</button>
-                        <p style={{color: 'rgb(129, 140, 153)'}}>Forgot password? <u style={{cursor:'pointer'}}>Reset</u></p>
+                <div className="headerSearch">
+                    <input type="text" className="headerSearchInput" />
+                    <SearchIcon className='headerIcon' />
+                </div>
+            <div className='navBlock'>
+                <div className='sidenavLink'> <AccountBoxIcon/>Profile</div>
+                <div className='sidenavLink'> <HistoryIcon /> History</div>
+                <div className='sidenavLink'> <AccountBalanceWalletIcon /> Add balance</div>
+                <div className='sidenavLink' onClick={props.logout}> <ExitToAppIcon />Logout</div>
+            </div>
+
+                {props.selectedStation &&
+                <div className='chargingBlock'>
+                    <div className='chargingBlockContent'>
+                        <div className='chargingBlockTitle'>{props.selectedStation.stationName}</div>
+                        <div className='chargingBlockAddress'>{props.selectedStation.address}</div>
+                        <table className='chargingBlockDetails'>
+                            <tr>
+                                <td>Price:</td>
+                                <td>{props.selectedStation.price}€/minute</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Power:
+                                </td>
+                                <td>
+                                    {props.selectedStation.power} kWh
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Type:
+                                </td>
+                                <td>
+                                    {props.selectedStation.type}
+                                </td>
+                            </tr>
+                        </table>
+                        <button className='startButton'>Start charging</button>
                     </div>
                 </div>
-                <div style={{textAlign: 'center'}}>
-                    <h2 style={{marginBottom: '-5px'}}>First time here?</h2>
-                    <small>Sign up for <span style={{color: '#3CB371'}}>GoElectrical</span></small>
-                </div>
-                <div className="loginForm">
-                    <input type="text" placeholder='Your first name'/>
-                    <input type="text" placeholder='Your last name'/>
-                    <input type="text" placeholder='Your email'/>
-                    <button className='registerButton'>Continue registration</button>
-                </div>
-
-                <div className='bottomBlock'>
-                    <p>After registering, you will be able to charge your electric car, make payments and track you power usage. Some of the slow chargers are free, but still require the application to be used to start the charging</p>
-                </div>
-
+                }
             </div>
         </div>
     )
