@@ -10,16 +10,24 @@ function App() {
 
     const [selectedStation, setSelectedStation] = React.useState(null)
 
+    const [usedStation, setUsedStation] = React.useState(null)
+
   return (
     <div>
         {loggedIn
         ? <Sidebar
                 selectedStation={selectedStation}
-                logout={() => setLoggedIn(false)}/>
+                usedStation={usedStation}
+                setUsedStation={setUsedStation}
+                logout={() => setLoggedIn(false)}
+            />
         : <Authentication
                 login={() => setLoggedIn(true)}/>}
 
-        <Map selectedStation={selectedStation} setSelectedStation={setSelectedStation}/>
+        <Map
+            selectedStation={selectedStation}
+            setSelectedStation={setSelectedStation}
+        />
     </div>
   );
 }

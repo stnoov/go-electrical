@@ -33,13 +33,14 @@ export default function Sidebar(props) {
                     <SearchIcon className='headerIcon' />
                 </div>
             <div className='navBlock'>
-                <div className='sidenavLink'> <AccountBoxIcon/>Profile</div>
-                <div className='sidenavLink'> <HistoryIcon /> History</div>
-                <div className='sidenavLink'> <AccountBalanceWalletIcon /> Add balance</div>
-                <div className='sidenavLink' onClick={props.logout}> <ExitToAppIcon />Logout</div>
+                <div className='sidenavLink'> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
+                <div className='sidenavLink'> <HistoryIcon className='sidebarIcons'/> History</div>
+                <div className='sidenavLink'> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
+                <div className='sidenavLink' onClick={props.logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 
                 {props.selectedStation &&
+                    !props.usedStation &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
                         <div className='chargingBlockTitle'>{props.selectedStation.stationName}</div>
@@ -66,7 +67,33 @@ export default function Sidebar(props) {
                                 </td>
                             </tr>
                         </table>
-                        <button className='startButton'>Start charging</button>
+                        <button className='startButton' onClick={() => {
+                            props.setUsedStation(props.selectedStation)
+                        }}>Start charging</button>
+                    </div>
+                </div>
+                }
+
+                {props.usedStation &&
+                <div className='chargingBlock'>
+                    <div className='chargingBlockContent'>
+                        <div className='chargingBlockTitle'>Your active connection</div>
+                        <div className='chargingBlockAddress'>{props.usedStation.stationName}</div>
+                        <table className='chargingBlockDetails' style={{marginLeft: '50px'}}>
+                            <tr>
+                                <td>Time active:</td>
+                                <td>15 min</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Power consumed:
+                                </td>
+                                <td>
+                                    100 kWh
+                                </td>
+                            </tr>
+                        </table>
+                        <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => props.setUsedStation(null)}>Stop charging</button>
                     </div>
                 </div>
                 }
