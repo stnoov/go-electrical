@@ -46,6 +46,8 @@ export default function Sidebar(props) {
                         <div className='chargingBlockTitle'>{props.selectedStation.stationName}</div>
                         <div className='chargingBlockAddress'>{props.selectedStation.address}</div>
                         <table className='chargingBlockDetails'>
+                            <thead/>
+                            <tbody>
                             <tr>
                                 <td>Price:</td>
                                 <td>{props.selectedStation.price}€/minute</td>
@@ -66,6 +68,7 @@ export default function Sidebar(props) {
                                     {props.selectedStation.type}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                         <button className='startButton' onClick={() => {
                             props.setUsedStation(props.selectedStation)
@@ -80,6 +83,8 @@ export default function Sidebar(props) {
                         <div className='chargingBlockTitle'>Your active connection</div>
                         <div className='chargingBlockAddress'>{props.usedStation.stationName}</div>
                         <table className='chargingBlockDetails' style={{marginLeft: '50px'}}>
+                            <thead/>
+                            <tbody>
                             <tr>
                                 <td>Time active:</td>
                                 <td>15 min</td>
@@ -92,6 +97,7 @@ export default function Sidebar(props) {
                                     100 kWh
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                         <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => props.setUsedStation(null)}>Stop charging</button>
                     </div>

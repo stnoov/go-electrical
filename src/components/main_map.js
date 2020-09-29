@@ -35,6 +35,7 @@ function Map(props) {
                 options={options}
             >
                 {StationsData.stations.map((station) => <Marker
+                        key={station.stationID}
                         onClick={() => {props.setSelectedStation(station)}}
                         position={{lat: station.lat, lng: station.lng}}
                         icon={{
@@ -52,6 +53,8 @@ function Map(props) {
                         <span style={{fontSize: '18px', fontWeight: '600'}}>{props.selectedStation.stationName}</span><br/>
                         <span style={{fontSize: '14px', fontWeight: '400'}}>{props.selectedStation.address}</span>
                         <table>
+                            <thead/>
+                            <tbody>
                             <tr>
                                 <td>Price:</td>
                                 <td>{props.selectedStation.price}€/minute</td>
@@ -72,6 +75,7 @@ function Map(props) {
                                     {props.selectedStation.type}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </InfoWindow>) : null}

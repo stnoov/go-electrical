@@ -21,8 +21,7 @@ const db = mysql.createConnection({
     database: 'go_electrical'
 })
 
-app.post('/register', (req, res) =>
-{
+app.post('/register', (req, res) => {
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const email = req.body.email;
@@ -30,22 +29,35 @@ app.post('/register', (req, res) =>
     const created_at = req.body.created_at;
 
     bcrypt.hash(password, 10, (err, hash) => {
-            if (err) {
-                console.log(err)
-            }
-            db.query(
-                "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
-                [first_name,last_name,email,created_at, hash],
-                (err, result) => {
-                    if(err) {
-                        res.send(err)
-                    } else {
-                        res.send('Success!')
-                    }
-                }
-            )
+        if (err) {
+            console.log(err)
         }
-    )
+        db.query(
+            "SELECT * FROM users WHERE email = ?",
+            email,
+            (err, result) => {
+                console.log(result)
+                if (err) {
+                    res.send({err: err})
+                }
+                if (result && result.length > 0) {
+                    res.send('email is already existing')
+                } else {
+                    db.query(
+                        "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
+                        [first_name, last_name, email, created_at, hash],
+                        (err, result) => {
+                            if (err) {
+                                res.send(err)
+                            } else {
+                                res.send('Success!')
+                            }
+                        }
+                    )
+                }
+            }
+        )
+    })
 })
 
 app.post('/login', (req, res) => {
