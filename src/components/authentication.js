@@ -7,8 +7,9 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 export default function Authentication(props) {
 
     const [menuVisibility, setMenuVisibility] = React.useState("shown")
-
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
+
+
 
     return (
         <div>
@@ -38,11 +39,11 @@ export default function Authentication(props) {
                         <span style={{marginBottom: '-10px', fontSize: '22px', fontWeight: '700'}}>First time here?</span><br/>
                         <small>Sign up for <span style={{color: '#3CB371'}}>GoElectrical</span></small>
                     </div>
-                    <input style={{marginTop: '20px'}} type="text" placeholder='Your first name'/>
-                    <input type="text" placeholder='Your last name'/>
-                    <input type="text" placeholder='Your email'/>
-                    <input type="text" placeholder='Your password'/>
-                    <button className='registerButton'>Register</button>
+                    <input onChange={event => props.setRegFirstName(event.target.value)} style={{marginTop: '20px'}} type="text" placeholder='Your first name'/>
+                    <input onChange={event => props.setRegLastName(event.target.value)} type="text" placeholder='Your last name'/>
+                    <input onChange={event => props.setRegEmail(event.target.value)} type="text" placeholder='Your email'/>
+                    <input onChange={event => props.setRegPassword(event.target.value)} type="text" placeholder='Your password'/>
+                    <button onClick={() => props.register()} className='registerButton'>Register</button>
                 </div>
 
                 <div className='bottomBlock'>
