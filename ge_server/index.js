@@ -36,7 +36,6 @@ app.post('/register', (req, res) => {
             "SELECT * FROM users WHERE email = ?",
             email,
             (err, result) => {
-                console.log(result)
                 if (err) {
                     res.send({err: err})
                 }
@@ -48,9 +47,10 @@ app.post('/register', (req, res) => {
                         [first_name, last_name, email, created_at, hash],
                         (err, result) => {
                             if (err) {
-                                res.send(err)
+                                res.send(false)
                             } else {
-                                res.send('Success!')
+                                console.log(result)
+                                res.send(true)
                             }
                         }
                     )

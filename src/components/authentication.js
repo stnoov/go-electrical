@@ -8,12 +8,45 @@ import Axios from "axios";
 import LoginForm from "./loginForm";
 import * as Yup from 'yup'
 import ReportIcon from '@material-ui/icons/Report';
+import ReactNotification from 'react-notifications-component'
+import 'animate.css';
+import {store} from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 export default function Authentication(props) {
 
     const [menuVisibility, setMenuVisibility] = React.useState("shown")
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
+    const handleNotificationsSuccess = () => {
+        store.addNotification({
+            title: "You have been successfully registered",
+            message: "Now you can use all the features of the app",
+            type: "success",
+            container: 'top-right',
+            insert: 'top',
+            dismiss: {
+                duration: 5000,
+                showIcon: true
+            },
+            width: 550
+        })
+    }
+
+    const handleNotificationsDanger = () => {
+        store.addNotification({
+            title: "ERROR!",
+            message: "User with this email is already registered",
+            type: "danger",
+            container: 'top-right',
+            insert: 'top',
+            dismiss: {
+                duration: 5000,
+                showIcon: true
+            },
+            width: 550
+        })
+    }
 
 
     const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
@@ -37,7 +70,15 @@ export default function Authentication(props) {
                 password: values.password,
                 created_at: Date.now()
             }).then((response) => {
-                console.log(response)
+                if(response.data === true) {
+                    console.log(response)
+                    handleNotificationsSuccess()
+                } else {
+                    console.log('ERROR!', response)
+                    handleNotificationsDanger()
+                }
+
+
             })
         }
     })
@@ -45,6 +86,7 @@ export default function Authentication(props) {
 
     return (
         <div>
+            <ReactNotification />
             <ArrowForwardIcon onClick={() => {
                 setMenuVisibility('visible')
                 setToggleVisibility('hidden')
