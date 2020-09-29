@@ -22,6 +22,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+ge_server/.idea
+
 
 git config --global user.email "stnoov@gmail.com"
 git config --global user.name "Artem Sitnov"

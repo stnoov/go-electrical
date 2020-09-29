@@ -14,6 +14,8 @@ function App() {
     const [regEmail, setRegEmail] = React.useState("")
     const [regPassword, setRegPassword] = React.useState("")
 
+    const [loginEmail, setLoginEmail] = React.useState("")
+    const [loginPassword, setLoginPassword] = React.useState("")
 
     const [selectedStation, setSelectedStation] = React.useState(null)
 
@@ -32,6 +34,17 @@ function App() {
         })
     }
 
+    const login = () => {
+        Axios.post("http://localhost:3001/login", {
+            email: loginEmail,
+            password: loginPassword
+        }).then((response) => {
+            if(response.data === true) {
+                setLoggedIn(true)
+            }
+        })
+    }
+
   return (
     <div>
         {loggedIn
@@ -42,7 +55,9 @@ function App() {
                 logout={() => setLoggedIn(false)}
             />
         : <Authentication
-                login={() => setLoggedIn(true)}
+                setLoginEmail={setLoginEmail}
+                setLoginPassword={setLoginPassword}
+                login={login}
                 setRegFirstName={setRegFirstName}
                 setRegLastName={setRegLastName}
                 setRegEmail={setRegEmail}

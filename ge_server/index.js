@@ -23,29 +23,29 @@ const db = mysql.createConnection({
 
 app.post('/register', (req, res) =>
 {
-        const first_name = req.body.first_name;
-        const last_name = req.body.last_name;
-        const email = req.body.email;
-        const password = req.body.password;
-        const created_at = req.body.created_at;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const email = req.body.email;
+    const password = req.body.password;
+    const created_at = req.body.created_at;
 
-        bcrypt.hash(password, 10, (err, hash) => {
+    bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
                 console.log(err)
             }
-                db.query(
-                        "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
-                        [first_name,last_name,email,created_at, hash],
-                        (err, result) => {
-                            if(err) {
-                                res.send(err)
-                            } else {
-                                res.send('Success!')
-                            }
-                        }
-                    )
+            db.query(
+                "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
+                [first_name,last_name,email,created_at, hash],
+                (err, result) => {
+                    if(err) {
+                        res.send(err)
+                    } else {
+                        res.send('Success!')
+                    }
                 }
             )
+        }
+    )
 })
 
 app.post('/login', (req, res) => {
@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
             if (result.length > 0) {
                 bcrypt.compare(password, result[0].password, (err, response) => {
                     if(response) {
-                        res.send({message: "Success"})
+                        res.send(true)
                     } else {
                         res.send({ message: "Wrong username or password"})
                     }

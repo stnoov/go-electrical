@@ -27,8 +27,8 @@ export default function Authentication(props) {
                 setToggleVisibility("visible")
             }} style={{display: 'inline', cursor: 'pointer'}}/>
                 <div className="loginForm">
-                    <input type="text" placeholder='Phone or E-mail'/>
-                    <input type="text" placeholder='Password'/>
+                    <input onChange={(e) => props.setLoginEmail(e.target.value)} type="text" placeholder='Phone or E-mail'/>
+                    <input onChange={(e) => props.setLoginPassword(e.target.value)} type="text" placeholder='Password'/>
                     <div className="loginButtons">
                         <button className="signInButton" onClick={props.login}>Log in</button>
                         <p style={{color: 'rgb(129, 140, 153)'}}>Forgot password? <u style={{cursor:'pointer'}}>Reset</u></p>
