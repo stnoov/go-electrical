@@ -3,12 +3,36 @@ import './authentication.css'
 import CropDinIcon from '@material-ui/icons/CropDin';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import {useFormik} from "formik";
+import Axios from "axios";
+import LoginForm from "./loginForm";
 
 export default function Authentication(props) {
 
     const [menuVisibility, setMenuVisibility] = React.useState("shown")
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
+
+
+    const {handleSubmit, handleChange, values} = useFormik({
+        initialValues: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: ''
+        },
+        onSubmit: (values) => {
+            Axios.post("http://localhost:3001/register", {
+                first_name: values.first_name,
+                last_name: values.last_name,
+                email: values.email,
+                password: values.password,
+                created_at: Date.now()
+            }).then((response) => {
+                console.log(response)
+            })
+        }
+    })
 
 
     return (
@@ -26,24 +50,42 @@ export default function Authentication(props) {
                 setMenuVisibility("hidden")
                 setToggleVisibility("visible")
             }} style={{display: 'inline', cursor: 'pointer'}}/>
-                <div className="loginForm">
-                    <input onChange={(e) => props.setLoginEmail(e.target.value)} type="text" placeholder='Phone or E-mail'/>
-                    <input onChange={(e) => props.setLoginPassword(e.target.value)} type="text" placeholder='Password'/>
-                    <div className="loginButtons">
-                        <button className="signInButton" onClick={props.login}>Log in</button>
-                        <p style={{color: 'rgb(129, 140, 153)'}}>Forgot password? <u style={{cursor:'pointer'}}>Reset</u></p>
-                    </div>
-                </div>
+
+                    <LoginForm setLoggedIn={props.setLoggedIn}/>
+
                 <div className="loginForm">
                     <div style={{textAlign: 'center'}}>
                         <span style={{marginBottom: '-10px', fontSize: '22px', fontWeight: '700'}}>First time here?</span><br/>
                         <small>Sign up for <span style={{color: '#3CB371'}}>GoElectrical</span></small>
                     </div>
-                    <input onChange={event => props.setRegFirstName(event.target.value)} style={{marginTop: '20px'}} type="text" placeholder='Your first name'/>
-                    <input onChange={event => props.setRegLastName(event.target.value)} type="text" placeholder='Your last name'/>
-                    <input onChange={event => props.setRegEmail(event.target.value)} type="text" placeholder='Your email'/>
-                    <input onChange={event => props.setRegPassword(event.target.value)} type="text" placeholder='Your password'/>
-                    <button onClick={() => props.register()} className='registerButton'>Register</button>
+                    <form onSubmit={handleSubmit}>
+                    <input
+                        value={values.first_name}
+                        onChange={handleChange}
+                        style={{marginTop: '20px'}}
+                        id='first_name'
+                        name='first_name'
+                        placeholder='Your first name'/>
+                    <input
+                        value={values.last_name}
+                        onChange={handleChange}
+                        id='last_name'
+                        name='last_name'
+                        placeholder='Your last name'/>
+                    <input
+                        value={values.email}
+                        onChange={handleChange}
+                        id='email'
+                        name='email'
+                        placeholder='Your email'/>
+                    <input
+                        value={values.password}
+                        onChange={handleChange}
+                        id='password'
+                        name='password'
+                        placeholder='Your password'/>
+                    <button type="submit" className='registerButton'>Register</button>
+                    </form>
                 </div>
 
                 <div className='bottomBlock'>

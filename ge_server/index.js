@@ -56,6 +56,7 @@ app.post('/login', (req, res) => {
         "SELECT * FROM users WHERE email = ?",
         email,
         (err, result) => {
+            console.log(result)
             if(err) {
                 res.send({err: err})
             }
@@ -64,7 +65,7 @@ app.post('/login', (req, res) => {
                     if(response) {
                         res.send(true)
                     } else {
-                        res.send({ message: "Wrong username or password"})
+                        res.send({ message: response})
                     }
                 })
             } else {
