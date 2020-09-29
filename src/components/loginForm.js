@@ -33,14 +33,13 @@ export default function LoginForm(props) {
                 onChange={handleChange}
                 id='email'
                 name='email'
-                type="text"
                 placeholder='Phone or E-mail'/>
             <input
                 value={values.password}
                 onChange={handleChange}
                 id='password'
                 name='password'
-                type="text"
+                type='password'
                 placeholder='Password'/>
             <div className="loginButtons">
                 <button type='submit' className="signInButton" >Log in</button>

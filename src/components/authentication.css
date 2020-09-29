@@ -110,4 +110,16 @@
 
 }
 
+.inputErrors {
+    display: flex;
+    align-items: center;
+    background-color: #FA8072;
+    border-radius: 3px;
+    padding: 3px;
+    color: white;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
 
