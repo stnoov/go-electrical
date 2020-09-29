@@ -33,10 +33,10 @@ export default function Authentication(props) {
         })
     }
 
-    const handleNotificationsDanger = () => {
+    const handleNotificationsDanger = (message = 'ERROR!') => {
         store.addNotification({
             title: "ERROR!",
-            message: "User with this email is already registered",
+            message: message,
             type: "danger",
             container: 'top-right',
             insert: 'top',
@@ -75,7 +75,7 @@ export default function Authentication(props) {
                     handleNotificationsSuccess()
                 } else {
                     console.log('ERROR!', response)
-                    handleNotificationsDanger()
+                    handleNotificationsDanger(response.data)
                 }
 
 
@@ -101,7 +101,10 @@ export default function Authentication(props) {
                 setToggleVisibility("visible")
             }} style={{display: 'inline', cursor: 'pointer'}}/>
 
-                    <LoginForm setLoggedIn={props.setLoggedIn}/>
+                    <LoginForm
+                        setLoggedIn={props.setLoggedIn}
+                        handleNotificationsDanger={handleNotificationsDanger}
+                    />
 
                 <div className="loginForm">
                     <div style={{textAlign: 'center'}}>

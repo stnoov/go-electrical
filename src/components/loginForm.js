@@ -19,6 +19,8 @@ export default function LoginForm(props) {
                 console.log(response)
                 if(response.data === true) {
                     props.setLoggedIn(true)
+                } else {
+                    props.handleNotificationsDanger(response.data)
                 }
             })
         }

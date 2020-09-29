@@ -40,14 +40,14 @@ app.post('/register', (req, res) => {
                     res.send({err: err})
                 }
                 if (result && result.length > 0) {
-                    res.send('email is already existing')
+                    res.send('Email is already used')
                 } else {
                     db.query(
                         "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
                         [first_name, last_name, email, created_at, hash],
                         (err, result) => {
                             if (err) {
-                                res.send(false)
+                                res.send('Error!')
                             } else {
                                 console.log(result)
                                 res.send(true)
@@ -68,20 +68,19 @@ app.post('/login', (req, res) => {
         "SELECT * FROM users WHERE email = ?",
         email,
         (err, result) => {
-            console.log(result)
             if(err) {
-                res.send({err: err})
+                res.send("User does not exist")
             }
             if (result.length > 0) {
                 bcrypt.compare(password, result[0].password, (err, response) => {
                     if(response) {
                         res.send(true)
                     } else {
-                        res.send({ message: response})
+                        res.send("Wrong email or password")
                     }
                 })
             } else {
-                res.send({ message: "user does not exist"})
+                res.send("User does not exist")
             }
         }
     )
