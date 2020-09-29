@@ -33,15 +33,16 @@ export default function Authentication(props) {
                         <p style={{color: 'rgb(129, 140, 153)'}}>Forgot password? <u style={{cursor:'pointer'}}>Reset</u></p>
                     </div>
                 </div>
-                <div style={{textAlign: 'center'}}>
-                    <h2 style={{marginBottom: '-5px'}}>First time here?</h2>
-                    <small>Sign up for <span style={{color: '#3CB371'}}>GoElectrical</span></small>
-                </div>
                 <div className="loginForm">
-                    <input type="text" placeholder='Your first name'/>
+                    <div style={{textAlign: 'center'}}>
+                        <span style={{marginBottom: '-10px', fontSize: '22px', fontWeight: '700'}}>First time here?</span><br/>
+                        <small>Sign up for <span style={{color: '#3CB371'}}>GoElectrical</span></small>
+                    </div>
+                    <input style={{marginTop: '20px'}} type="text" placeholder='Your first name'/>
                     <input type="text" placeholder='Your last name'/>
                     <input type="text" placeholder='Your email'/>
-                    <button className='registerButton'>Continue registration</button>
+                    <input type="text" placeholder='Your password'/>
+                    <button className='registerButton'>Register</button>
                 </div>
 
                 <div className='bottomBlock'>
