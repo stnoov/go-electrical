@@ -70,7 +70,7 @@ export default function Authentication(props) {
 
                     <Registration
                         handleNotificationsSuccess={handleNotificationsSuccess}
-
+                        handleNotificationsDanger={handleNotificationsDanger}
                     />
 
 

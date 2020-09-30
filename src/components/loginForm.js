@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Axios from "axios";
 import {useFormik} from "formik";
 
@@ -6,15 +6,17 @@ import {useFormik} from "formik";
 
 export default function LoginForm(props) {
 
+    Axios.defaults.withCredentials = true;
+
     const {handleSubmit, handleChange, values} = useFormik({
         initialValues: {
-            email: '',
-            password: ''
+            loginEmail: '',
+            loginPassword: ''
         },
-        onSubmit: (email,password) => {
+        onSubmit: (loginEmail,loginPassword) => {
             Axios.post("http://localhost:3001/login", {
-                email: values.email,
-                password: values.password
+                email: values.loginEmail,
+                password: values.loginPassword
             }).then((response) => {
                 console.log(response)
                 if(response.data === true) {
@@ -26,21 +28,29 @@ export default function LoginForm(props) {
         }
     })
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            if(response.data.loggedIn === true) {
+                props.setLoggedIn(true)
+            }
+        })
+    })
+
     return (
 
         <div className="loginForm">
             <form onSubmit={handleSubmit}>
             <input
-                value={values.email}
+                value={values.loginEmail}
                 onChange={handleChange}
-                id='email'
-                name='email'
+                id='loginEmail'
+                name='loginEmail'
                 placeholder='Phone or E-mail'/>
             <input
-                value={values.password}
+                value={values.loginPassword}
                 onChange={handleChange}
-                id='password'
-                name='password'
+                id='loginPassword'
+                name='loginPassword'
                 type='password'
                 placeholder='Password'/>
             <div className="loginButtons">
