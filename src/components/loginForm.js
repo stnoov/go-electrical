@@ -20,6 +20,7 @@ export default function LoginForm(props) {
             }).then((response) => {
                 console.log(response)
                 if(response.data === true) {
+                    props.setLoggedInUser(response.data.user)
                     props.setLoggedIn(true)
                 } else {
                     props.handleNotificationsDanger(response.data)
@@ -32,6 +33,7 @@ export default function LoginForm(props) {
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn === true) {
                 props.setLoggedIn(true)
+                props.setLoggedInUser(response.data.user)
             }
         })
     })

@@ -64,6 +64,7 @@ export default function Authentication(props) {
 
                     <LoginForm
                         setLoggedIn={props.setLoggedIn}
+                        setLoggedInUser={props.setLoggedInUser}
                         handleNotificationsDanger={handleNotificationsDanger}
                         handleNotificationsSuccess={handleNotificationsSuccess}
                     />

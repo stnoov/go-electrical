@@ -26,7 +26,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24
+        expires: new Date(Date.now() + (30 * 86400 * 1000))
     }
 }))
 
@@ -110,6 +110,12 @@ app.get('/login', ((req, res) => {
     } else {
         res.send({loggedIn: false})
     }
+}))
+
+app.get('/logout', ((req, res) => {
+    req.session.destroy(function(err) {
+       res.send({loggedIn: false})
+    })
 }))
 
 app.listen(3001, () => {
