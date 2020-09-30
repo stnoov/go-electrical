@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/loginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/loginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1601368776387</updated>
       <workItem from="1601368777557" duration="6599000" />
-      <workItem from="1601377443304" duration="7679000" />
+      <workItem from="1601377443304" duration="8170000" />
+      <workItem from="1601444052299" duration="610000" />
     </task>
     <servers />
   </component>
@@ -78,6 +77,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="936" height="279" key="GridCell.Tab.0.bottom" timestamp="1601369837523">
