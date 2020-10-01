@@ -30,10 +30,10 @@ export default function Authentication(props) {
         })
     }
 
-    const handleNotificationsDanger = (message = 'ERROR!') => {
+    const handleNotificationsDanger = () => {
         store.addNotification({
             title: "ERROR!",
-            message: message,
+            message: "Ooops! Something went wrong!",
             type: "danger",
             container: 'top-right',
             insert: 'top',

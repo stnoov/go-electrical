@@ -1,0 +1,30 @@
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.balanceModalTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.balanceText {
+    color: rgb(129, 140, 153);
+}
+
+.addBalanceButton {
+    font-family: Roboto, serif;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 50%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px;
+}

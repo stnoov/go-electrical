@@ -86,7 +86,7 @@ app.post('/login', (req, res) => {
         email,
         (err, result) => {
             if(err) {
-                res.send("User does not exist")
+                res.send(false)
             }
             if (result.length > 0) {
                 bcrypt.compare(password, result[0].password, (err, response) => {
@@ -94,11 +94,11 @@ app.post('/login', (req, res) => {
                         req.session.user = result
                         res.send(req.session.user)
                     } else {
-                        res.send("Wrong email or password")
+                        res.send(false)
                     }
                 })
             } else {
-                res.send("User does not exist")
+                res.send(false)
             }
         }
     )
