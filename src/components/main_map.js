@@ -34,8 +34,8 @@ function Map(props) {
                 center={OuluCoordinates}
                 options={options}
             >
-                {StationsData.stations.map((station) => <Marker
-                        key={station.stationID}
+                {StationsData.stations.map((station, index) => <Marker
+                        key={index}
                         onClick={() => {props.setSelectedStation(station)}}
                         position={{lat: station.lat, lng: station.lng}}
                         icon={{

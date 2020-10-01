@@ -18,10 +18,10 @@ export default function BalanceModal(props) {
     let loggedInEmail = props.loggedInUser.email
 
     function addBalance() {
-        Axios.post("http://localhost:3001/add_balance", {
+        Axios.post("http://localhost:3001/user/{props.loggedInUser.id}/add_balance", {
             email: loggedInEmail
         }).then((response) => {
-            props.setLoggedInUser(response.data.user)
+            props.setLoggedInUser(response.data[0])
         })
 }
 

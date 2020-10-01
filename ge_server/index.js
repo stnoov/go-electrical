@@ -119,7 +119,7 @@ app.get('/logout', ((req, res) => {
     })
 }))
 
-app.post('/add_balance', (req, res) => {
+app.post('/user/:id/add_balance', (req, res) => {
        db.query(
             'UPDATE users SET balance=balance+100 WHERE email = ?',
             req.body.email,
@@ -130,10 +130,20 @@ app.post('/add_balance', (req, res) => {
                 db.query(
                     "SELECT * FROM users WHERE email = ?",
                     req.body.email,
-
+                    (err, result) => {
+                        req.session.user = result
+                        res.send(req.session.user)
+                    }
                 )
            }
 )
+})
+
+app.get('/user/:id/info', (req, res) => {
+    db.query(
+        "SELECT * FROM users WHERE email = ?",
+        req.body.email
+    )
 })
 
 app.listen(3001, () => {
