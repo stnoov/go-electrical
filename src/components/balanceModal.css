@@ -2,10 +2,11 @@
     position: absolute;
     top: 15px;
     right: 15px;
+    cursor: pointer;
 }
 
-.balanceModalTitle {
-    font-size: 20px;
+.ModalTitle {
+    font-size: 24px;
     font-weight: 600;
 }
 

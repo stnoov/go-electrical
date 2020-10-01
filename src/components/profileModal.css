@@ -1,0 +1,32 @@
+.profileInfo {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+
+}
+
+.column {
+    flex: 50%;
+}
+
+input {
+    font-family: Roboto, serif;
+    width: 244px;
+    padding: 6px 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(211, 217, 222);
+    border-radius: 3px;
+}
+
+.profileButton {
+    font-family: Roboto, serif;
+    font-size: 16px;
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

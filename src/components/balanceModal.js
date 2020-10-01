@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from 'react-modal'
 import Axios from "axios";
-import balanceModal from './balanceModal.css'
+import './balanceModal.css'
 import CloseIcon from '@material-ui/icons/Close';
 
 const customStyles = {
@@ -20,7 +20,7 @@ export default function BalanceModal(props) {
     let loggedInEmail = props.loggedInUser.email
 
     function closeModal(){
-        props.setIsOpen(false);
+        props.setBalanceModalStatus(false);
     }
 
     function addBalance() {
@@ -36,11 +36,11 @@ export default function BalanceModal(props) {
 
     return (
         <Modal
-            isOpen={props.modalIsOpen}
+            isOpen={props.balanceModalStatus}
             style={customStyles}
             ariaHideApp={false}
         >
-            <span className='balanceModalTitle'>Add Balance</span>
+            <span className='ModalTitle'>Add Balance</span>
             <p className='balanceText'>* This section is still in development mode, by clicking the button below, you will receive an extra <span style={{fontWeight: '700'}}>100€</span> to your balance for testing purposes</p>
             <button className='addBalanceButton' onClick={addBalance}> ADD BALANCE </button>
             <CloseIcon className='closeButton' onClick={closeModal} />

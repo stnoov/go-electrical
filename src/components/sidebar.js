@@ -47,9 +47,15 @@ export default function Sidebar(props) {
                     {props.loggedInUser.first_name + " " + props.loggedInUser.last_name}<br/>
                     Current Balance: <span>{props.loggedInUser.balance}€</span>
                 </div>
-                <div className='sidenavLink' onClick={() => console.log(props.loggedInUser)}> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
+                <div className='sidenavLink' onClick={() => {
+                    props.setProfileModalStatus(true)
+                    props.setBalanceModalStatus(false)
+                }}> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
                 <div className='sidenavLink'> <HistoryIcon className='sidebarIcons'/> History</div>
-                <div className='sidenavLink' onClick={() => props.setIsOpen(true)}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
+                <div className='sidenavLink' onClick={() => {
+                    props.setBalanceModalStatus(true)
+                    props.setProfileModalStatus(false)
+                }}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
                 <div className='sidenavLink' onClick={logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 
