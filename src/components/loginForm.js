@@ -22,6 +22,7 @@ export default function LoginForm(props) {
                 if(!response.data === false) {
                     props.setLoggedInUser(response.data[0])
                     props.setLoggedIn(true)
+                    props.handleNotificationsSuccess('You have successfully logged in!')
                 } else {
                     props.handleNotificationsDanger(response.data)
                 }

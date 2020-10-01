@@ -4,9 +4,7 @@ import CropDinIcon from '@material-ui/icons/CropDin';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import LoginForm from "./loginForm";
-import ReactNotification from 'react-notifications-component'
 import 'animate.css';
-import {store} from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Registration from "./registration";
 
@@ -15,39 +13,10 @@ export default function Authentication(props) {
     const [menuVisibility, setMenuVisibility] = React.useState("shown")
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
-    const handleNotificationsSuccess = () => {
-        store.addNotification({
-            title: "You have been successfully registered",
-            message: "Now you can use all the features of the app",
-            type: "success",
-            container: 'top-right',
-            insert: 'top',
-            dismiss: {
-                duration: 5000,
-                showIcon: true
-            },
-            width: 550
-        })
-    }
 
-    const handleNotificationsDanger = () => {
-        store.addNotification({
-            title: "ERROR!",
-            message: "Ooops! Something went wrong!",
-            type: "danger",
-            container: 'top-right',
-            insert: 'top',
-            dismiss: {
-                duration: 5000,
-                showIcon: true
-            },
-            width: 550
-        })
-    }
 
     return (
         <div>
-            <ReactNotification />
             <ArrowForwardIcon onClick={() => {
                 setMenuVisibility('visible')
                 setToggleVisibility('hidden')
@@ -65,13 +34,13 @@ export default function Authentication(props) {
                     <LoginForm
                         setLoggedIn={props.setLoggedIn}
                         setLoggedInUser={props.setLoggedInUser}
-                        handleNotificationsDanger={handleNotificationsDanger}
-                        handleNotificationsSuccess={handleNotificationsSuccess}
+                        handleNotificationsDanger={props.handleNotificationsDanger}
+                        handleNotificationsSuccess={props.handleNotificationsSuccess}
                     />
 
                     <Registration
-                        handleNotificationsSuccess={handleNotificationsSuccess}
-                        handleNotificationsDanger={handleNotificationsDanger}
+                        handleNotificationsSuccess={props.handleNotificationsSuccess}
+                        handleNotificationsDanger={props.handleNotificationsDanger}
                     />
 
 

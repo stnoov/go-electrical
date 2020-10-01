@@ -3,7 +3,7 @@ import ReportIcon from "@material-ui/icons/Report";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
-import * as moment from 'moment'
+
 
 
 
@@ -32,10 +32,8 @@ export default function Registration(props) {
                 created_at: Date.now()
             }).then((response) => {
                 if(response.data === true) {
-                    console.log(response)
-                    props.handleNotificationsSuccess()
+                    props.handleNotificationsSuccess('You have successfully registered!')
                 } else {
-                    console.log('ERROR!', response)
                     props.handleNotificationsDanger(response.data)
                 }
 

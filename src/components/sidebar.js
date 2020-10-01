@@ -11,13 +11,12 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import Axios from "axios";
 
 export default function Sidebar(props) {
-    const [menuVisibility, setMenuVisibility] = React.useState("shown")
+    const [menuVisibility, setMenuVisibility] = React.useState("visible")
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
     const logout = () => {
         Axios.get("http://localhost:3001/logout").then((response) => {
             if(response.data.loggedIn === false) {
-                props.setIsOpen(false)
                 props.setLoggedIn(false)
             }
         })

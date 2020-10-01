@@ -139,11 +139,35 @@ app.post('/user/:id/add_balance', (req, res) => {
 )
 })
 
-app.get('/user/:id/info', (req, res) => {
+app.post('/user/:id/change_email', (req, res) => {
     db.query(
-        "SELECT * FROM users WHERE email = ?",
-        req.body.email
-    )
+        'SELECT * FROM users WHERE email = ?',
+        req.body.newEmail,
+        (err, result) => {
+            newEmail = req.body.newEmail
+            oldEmail = req.body.email
+            if (result && result.length > 0) {
+                res.send(false)
+                } else {
+                db.query(
+                    'UPDATE users SET email=? WHERE email = ?',
+                    [newEmail, oldEmail],
+                    (error, result2) => {
+                        db.query(
+                            "SELECT * FROM users WHERE email = ?",
+                            req.body.newEmail,
+                            (err, result) => {
+                                req.session.user = result
+                                res.send(req.session.user)
+                                console.log(req.session.user)
+                            }
+                        )
+                    }
+                )
+            }
+
+        }
+        )
 })
 
 app.listen(3001, () => {
