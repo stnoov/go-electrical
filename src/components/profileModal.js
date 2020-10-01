@@ -1,9 +1,8 @@
 import React from "react";
 import Modal from 'react-modal'
-import Axios from "axios";
 import './profileModal.css'
 import CloseIcon from '@material-ui/icons/Close';
-
+import ChangeEmail from './changeEmail'
 
 const customStyles = {
     content : {
@@ -17,25 +16,7 @@ const customStyles = {
 };
 
 
-
-
 export default function ProfileModal(props) {
-
-    const [newEmail, setNewEmail] = React.useState(props.loggedInUser.email)
-
-    const changeEmail = () => {
-        Axios.post("http://localhost:3001/user/{props.loggedInUser.id}/change_email", {
-            email: props.loggedInUser.email,
-            newEmail: newEmail
-        }).then((response) => {
-            if(response.data === false) {
-                props.handleNotificationsDanger()
-            } else {
-                props.setLoggedInUser(response.data[0])
-                props.handleNotificationsSuccess('Your email was changed!')
-            }
-        })
-    }
 
 
     return (
@@ -52,18 +33,12 @@ export default function ProfileModal(props) {
                         Current Balance: {props.loggedInUser.balance}€
                 </div>
                 <div className='column'>
-                    <div style={{marginTop: '-55px'}}>
-                    <span className='ModalTitle'>Change email</span><br/>
-
-                    <input type="text"
-                           onChange={(event) => {
-                                setNewEmail(event.target.value)
-                    }}
-                           style={{ marginTop: '10px'}}
-                    /> <br/>
-
-                    <button className='profileButton' onClick={changeEmail} >Change email</button>
-                    </div>
+                    <ChangeEmail
+                        loggedInUser={props.loggedInUser}
+                        handleNotificationsDanger={props.handleNotificationsDanger}
+                        setLoggedInUser={props.setLoggedInUser}
+                        handleNotificationsSuccess={props.handleNotificationsSuccess}
+                    />
                     <div style={{marginTop: '25px'}}>
                         <span className='ModalTitle'>Change password</span><br/>
                         Old password: <input style={{marginLeft: '7px', marginTop: '10px'}} type="password"/> <br/>
