@@ -17,6 +17,7 @@ export default function Sidebar(props) {
     const logout = () => {
         Axios.get("http://localhost:3001/logout").then((response) => {
             if(response.data.loggedIn === false) {
+                props.setIsOpen(false)
                 props.setLoggedIn(false)
             }
         })
@@ -42,9 +43,13 @@ export default function Sidebar(props) {
                     <SearchIcon className='headerIcon' />
                 </div>
             <div className='navBlock'>
+                <div className="sidenavUser">
+                    {props.loggedInUser.first_name + " " + props.loggedInUser.last_name}<br/>
+                    Current Balance: <span>{props.loggedInUser.balance}€</span>
+                </div>
                 <div className='sidenavLink' onClick={() => console.log(props.loggedInUser)}> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
                 <div className='sidenavLink'> <HistoryIcon className='sidebarIcons'/> History</div>
-                <div className='sidenavLink'> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
+                <div className='sidenavLink' onClick={() => props.setIsOpen(true)}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
                 <div className='sidenavLink' onClick={logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 

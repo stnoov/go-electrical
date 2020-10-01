@@ -115,6 +115,13 @@
     border-radius: 3px;
 }
 
+.sidenav .sidenavUser {
+    padding: 7px 18px 9px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(129, 140, 153);
+}
+
 .sidenav .sidebarIcons {
     margin-right: 10px;
 }

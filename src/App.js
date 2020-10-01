@@ -3,18 +3,26 @@ import './App.css';
 import Map from './components/main_map'
 import Authentication from './components/authentication'
 import Sidebar from "./components/sidebar";
+import BalanceModal from "./components/balanceModal";
 
 
 
 function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false)
+    const [modalIsOpen,setIsOpen] = React.useState(false);
     const [loggedInUser, setLoggedInUser] = React.useState('')
     const [selectedStation, setSelectedStation] = React.useState(null)
     const [usedStation, setUsedStation] = React.useState(null)
 
   return (
     <div>
+        <BalanceModal
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+            modalIsOpen={modalIsOpen}
+            setIsOpen={setIsOpen}
+        />
         {loggedIn
         ? <Sidebar
                 setLoggedIn={setLoggedIn}
@@ -22,13 +30,13 @@ function App() {
                 selectedStation={selectedStation}
                 usedStation={usedStation}
                 setUsedStation={setUsedStation}
+                setIsOpen={setIsOpen}
                 logout={() => setLoggedIn(false)}
             />
         : <Authentication
                 setLoggedIn={setLoggedIn}
                 setLoggedInUser={setLoggedInUser}
             />}
-
         <Map
             selectedStation={selectedStation}
             setSelectedStation={setSelectedStation}

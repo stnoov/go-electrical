@@ -26,6 +26,7 @@ export default function Registration(props) {
                 last_name: values.last_name,
                 email: values.email,
                 password: values.password,
+                balance: 0,
                 created_at: Date.now()
             }).then((response) => {
                 if(response.data === true) {

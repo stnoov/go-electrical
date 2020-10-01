@@ -42,6 +42,7 @@ app.post('/register', (req, res) => {
     const last_name = req.body.last_name;
     const email = req.body.email;
     const password = req.body.password;
+    const balance = req.body.balance;
     const created_at = req.body.created_at;
 
     bcrypt.hash(password, 10, (err, hash) => {
@@ -59,8 +60,8 @@ app.post('/register', (req, res) => {
                     res.send('Email is already used')
                 } else {
                     db.query(
-                        "INSERT INTO users (first_name, last_name, email, created_at, password) VALUES (?,?,?,?,?)",
-                        [first_name, last_name, email, created_at, hash],
+                        "INSERT INTO users (first_name, last_name, email, created_at, password, balance) VALUES (?,?,?,?,?,?)",
+                        [first_name, last_name, email, created_at, hash, balance],
                         (err, result) => {
                             if (err) {
                                 res.send('Error!')
@@ -91,7 +92,7 @@ app.post('/login', (req, res) => {
                 bcrypt.compare(password, result[0].password, (err, response) => {
                     if(response) {
                         req.session.user = result
-                        res.send(true)
+                        res.send(req.session.user)
                     } else {
                         res.send("Wrong email or password")
                     }
@@ -117,6 +118,23 @@ app.get('/logout', ((req, res) => {
        res.send({loggedIn: false})
     })
 }))
+
+app.post('/add_balance', (req, res) => {
+       db.query(
+            'UPDATE users SET balance=balance+100 WHERE email = ?',
+            req.body.email,
+            (err, result) => {
+                if(err) {
+                    res.send("User does not exist")
+                }
+                db.query(
+                    "SELECT * FROM users WHERE email = ?",
+                    req.body.email,
+
+                )
+           }
+)
+})
 
 app.listen(3001, () => {
     console.log('Running server')

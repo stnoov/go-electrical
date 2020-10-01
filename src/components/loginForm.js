@@ -6,6 +6,7 @@ import {useFormik} from "formik";
 
 export default function LoginForm(props) {
 
+
     Axios.defaults.withCredentials = true;
 
     const {handleSubmit, handleChange, values} = useFormik({
@@ -18,9 +19,8 @@ export default function LoginForm(props) {
                 email: values.loginEmail,
                 password: values.loginPassword
             }).then((response) => {
-                console.log(response)
-                if(response.data === true) {
-                    props.setLoggedInUser(response.data.user)
+                if(!response.data === false) {
+                    props.setLoggedInUser(response.data[0])
                     props.setLoggedIn(true)
                 } else {
                     props.handleNotificationsDanger(response.data)
@@ -33,10 +33,10 @@ export default function LoginForm(props) {
         Axios.get("http://localhost:3001/login").then((response) => {
             if(response.data.loggedIn === true) {
                 props.setLoggedIn(true)
-                props.setLoggedInUser(response.data.user)
+                props.setLoggedInUser(response.data.user[0])
             }
         })
-    })
+    }, [])
 
     return (
 
