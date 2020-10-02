@@ -18,7 +18,6 @@ const customStyles = {
 
 export default function ProfileModal(props) {
 
-
     return (
         <Modal
             isOpen={props.profileModalStatus}
@@ -29,8 +28,15 @@ export default function ProfileModal(props) {
             <CloseIcon className='closeButton' onClick={() => props.setProfileModalStatus(false)} />
             <div className='profileInfo'>
                 <div className='column'>
-                        {props.loggedInUser.first_name + " " + props.loggedInUser.last_name} <br/>
-                        Current Balance: {props.loggedInUser.balance}€
+                        <div className='infoField'>
+                            Name: {props.loggedInUser.first_name + " " + props.loggedInUser.last_name}
+                        </div>
+                        <div className='infoField'>
+                            Balance: {props.loggedInUser.balance} <span style={{fontWeight: '600'}}>€</span>
+                        </div>
+                        <div className='infoField'>
+                            Subscription type: Basic
+                        </div>
                 </div>
                 <div className='column'>
                     <ChangeEmail

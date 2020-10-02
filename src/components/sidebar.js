@@ -8,6 +8,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HistoryIcon from '@material-ui/icons/History';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import Axios from "axios";
 
 export default function Sidebar(props) {
@@ -42,10 +43,6 @@ export default function Sidebar(props) {
                     <SearchIcon className='headerIcon' />
                 </div>
             <div className='navBlock'>
-                <div className="sidenavUser">
-                    {props.loggedInUser.first_name + " " + props.loggedInUser.last_name}<br/>
-                    Current Balance: <span>{props.loggedInUser.balance}€</span>
-                </div>
                 <div className='sidenavLink' onClick={() => {
                     props.setProfileModalStatus(true)
                     props.setBalanceModalStatus(false)
@@ -55,6 +52,7 @@ export default function Sidebar(props) {
                     props.setBalanceModalStatus(true)
                     props.setProfileModalStatus(false)
                 }}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
+                <div className="sidenavLink"> <DashboardIcon className='sidebarIcons' /> Subscriptions</div>
                 <div className='sidenavLink' onClick={logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 

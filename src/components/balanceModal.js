@@ -29,6 +29,7 @@ export default function BalanceModal(props) {
         }).then((response) => {
             props.setLoggedInUser(response.data[0])
             closeModal()
+            props.handleNotificationsSuccess('Balance has been updated!')
         })
 }
 

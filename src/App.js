@@ -60,6 +60,7 @@ function App() {
             profileModalStatus={profileModalStatus}
             />
         <BalanceModal
+            handleNotificationsSuccess={handleNotificationsSuccess}
             loggedInUser={loggedInUser}
             setLoggedInUser={setLoggedInUser}
             balanceModalStatus={balanceModalStatus}
