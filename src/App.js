@@ -6,17 +6,39 @@ import Sidebar from "./components/sidebar";
 import BalanceModal from "./components/balanceModal";
 import ProfileModal from './components/profileModal'
 import ReactNotification, {store} from "react-notifications-component";
+import Connections from "./components/connections";
+import Axios from "axios";
 
 
 
 function App() {
 
+    const [currentConnections, getCurrentConnections] = React.useState()
     const [loggedIn, setLoggedIn] = React.useState(false)
     const [balanceModalStatus,setBalanceModalStatus] = React.useState(false);
-    const [profileModalStatus, setProfileModalStatus] = React.useState(false)
+    const [profileModalStatus, setProfileModalStatus] = React.useState(false);
+    const [historyModalStatus, setHistoryModalStatus] = React.useState(false);
     const [loggedInUser, setLoggedInUser] = React.useState('')
     const [selectedStation, setSelectedStation] = React.useState(null)
     const [usedStation, setUsedStation] = React.useState(null)
+
+
+    const getConnections = () => {
+        Axios.post('http://localhost:3001/connections_data', {
+            userId: loggedInUser.id
+        }).then((response) => {
+            getCurrentConnections(response.data)
+        })
+    }
+
+    const stopCharging = (station_id) => {
+        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
+            userId: loggedInUser.id,
+            userEmail: loggedInUser.email,
+            stationId: station_id
+        })
+        handleNotificationsSuccess('Charging stopped')
+    }
 
     const handleNotificationsSuccess = (message) => {
         store.addNotification({
@@ -47,10 +69,18 @@ function App() {
             width: 700
         })
     }
-
   return (
+
     <div>
         <ReactNotification />
+        <Connections
+            stopCharging={stopCharging}
+            currentConnections={currentConnections}
+            getCurrentConnections={getCurrentConnections}
+            loggedInUser={loggedInUser}
+            setHistoryModalStatus={setHistoryModalStatus}
+            historyModalStatus={historyModalStatus}
+        />
         <ProfileModal
             setLoggedInUser={setLoggedInUser}
             handleNotificationsDanger={handleNotificationsDanger}
@@ -68,6 +98,12 @@ function App() {
         />
         {loggedIn
         ? <Sidebar
+                stopCharging={stopCharging}
+                getConnections={getConnections}
+                currentConnections={currentConnections}
+                getCurrentConnections={getCurrentConnections}
+                historyModalStatus={historyModalStatus}
+                setHistoryModalStatus={setHistoryModalStatus}
                 handleNotificationsSuccess={handleNotificationsSuccess}
                 setProfileModalStatus={setProfileModalStatus}
                 setLoggedIn={setLoggedIn}

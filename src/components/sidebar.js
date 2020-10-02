@@ -33,20 +33,14 @@ export default function Sidebar(props) {
     const startCharging = () => {
         Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
             userId: props.loggedInUser.id,
-            userEmail: props.loggedInUser.email,
-            stationId: props.selectedStation.station_id
+            stationId: props.selectedStation.station_id,
+            started_at: Date.now()
         })
-        props.handleNotificationsSuccess('Charging started, you can track it in history section')
+        props.handleNotificationsSuccess('Charging started, you can track it in connections section')
     }
 
-    const stopCharging = () => {
-        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
-            userId: props.loggedInUser.id,
-            userEmail: props.loggedInUser.email,
-            stationId: props.selectedStation.station_id
-        })
-        props.handleNotificationsSuccess('Charging stopped')
-    }
+
+
 
     return (
         <div>
@@ -72,7 +66,10 @@ export default function Sidebar(props) {
                     props.setProfileModalStatus(true)
                     props.setBalanceModalStatus(false)
                 }}> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
-                <div className='sidenavLink'> <HistoryIcon className='sidebarIcons'/> History</div>
+                <div className='sidenavLink' onClick={() => {
+                    props.setHistoryModalStatus(true)
+                    props.getConnections()
+                } }> <HistoryIcon className='sidebarIcons'/> Connections</div>
                 <div className='sidenavLink' onClick={() => {
                     props.setBalanceModalStatus(true)
                     props.setProfileModalStatus(false)
@@ -153,7 +150,7 @@ export default function Sidebar(props) {
                             </tbody>
                         </table>
                         <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => {
-                            stopCharging()
+                            props.stopCharging()
                             props.setUsedStation(null)
                         }}>Stop charging</button>
                     </div>
