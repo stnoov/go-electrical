@@ -216,8 +216,8 @@ app.post('/user/:id/station/:id/start_charging', (req, res) => {
         req.body.stationId,
         (err, result) => {
             db.query(
-                'INSERT INTO connections(user_id, user_email, station_id, is_over) VALUES(?,?,?, 0)',
-                [req.body.userId, req.body.userEmail, req.body.stationId]
+                'INSERT INTO connections(user_id, station_id, started_at, is_over) VALUES(?,?,?,0)',
+                [req.body.userId, req.body.stationId, req.body.started_at]
             )
         }
     )
@@ -232,6 +232,17 @@ app.post('/user/:id/station/:id/stop_charging', (req, res) => {
                 'UPDATE connections SET is_over=1 WHERE station_id=?',
                 [req.body.stationId]
             )
+        }
+    )
+})
+
+app.post('/connections_data', (req, res) => {
+    db.query(
+        'SELECT connections.connection_id, stations.station_name, connections.station_id, stations.station_address, connections.is_over FROM connections INNER JOIN stations ON connections.station_id = stations.station_id WHERE user_id=?',
+        req.body.userId,
+        (err, response) => {
+            console.log(response)
+            res.send(response)
         }
     )
 })
