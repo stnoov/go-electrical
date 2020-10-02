@@ -29,7 +29,7 @@ function App() {
                 duration: 5000,
                 showIcon: true
             },
-            width: 550
+            width: 700
         })
     }
 
@@ -44,7 +44,7 @@ function App() {
                 duration: 5000,
                 showIcon: true
             },
-            width: 550
+            width: 700
         })
     }
 
@@ -68,6 +68,7 @@ function App() {
         />
         {loggedIn
         ? <Sidebar
+                handleNotificationsSuccess={handleNotificationsSuccess}
                 setProfileModalStatus={setProfileModalStatus}
                 setLoggedIn={setLoggedIn}
                 loggedInUser={loggedInUser}

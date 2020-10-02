@@ -201,6 +201,41 @@ app.post('/user/:id/change_password', (req, res) => {
             })
 
 
+app.get('/stations_data', (req, res) => {
+    db.query(
+        'SELECT * FROM stations',
+        (err, result) => {
+            res.send(result)
+        }
+    )
+})
+
+app.post('/user/:id/station/:id/start_charging', (req, res) => {
+    db.query(
+        'UPDATE stations SET is_taken=1 WHERE station_id=?',
+        req.body.stationId,
+        (err, result) => {
+            db.query(
+                'INSERT INTO connections(user_id, user_email, station_id, is_over) VALUES(?,?,?, 0)',
+                [req.body.userId, req.body.userEmail, req.body.stationId]
+            )
+        }
+    )
+})
+
+app.post('/user/:id/station/:id/stop_charging', (req, res) => {
+    db.query(
+        'UPDATE stations SET is_taken=0 WHERE station_id=?',
+        req.body.stationId,
+        (err, result) => {
+            db.query(
+                'UPDATE connections SET is_over=1 WHERE station_id=?',
+                [req.body.stationId]
+            )
+        }
+    )
+})
+
 
 app.listen(3001, () => {
     console.log('Running server')

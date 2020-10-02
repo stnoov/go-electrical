@@ -19,8 +19,33 @@ export default function Sidebar(props) {
         Axios.get("http://localhost:3001/logout").then((response) => {
             if(response.data.loggedIn === false) {
                 props.setLoggedIn(false)
+                props.setBalanceModalStatus(false)
+                props.setProfileModalStatus(false)
             }
         })
+    }
+
+    const getStations = () => {
+        Axios.get('http://localhost:3001/stations_data').then((response) =>
+        console.log(response.data))
+    }
+
+    const startCharging = () => {
+        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
+            userId: props.loggedInUser.id,
+            userEmail: props.loggedInUser.email,
+            stationId: props.selectedStation.station_id
+        })
+        props.handleNotificationsSuccess('Charging started, you can track it in history section')
+    }
+
+    const stopCharging = () => {
+        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
+            userId: props.loggedInUser.id,
+            userEmail: props.loggedInUser.email,
+            stationId: props.selectedStation.station_id
+        })
+        props.handleNotificationsSuccess('Charging stopped')
     }
 
     return (
@@ -52,7 +77,7 @@ export default function Sidebar(props) {
                     props.setBalanceModalStatus(true)
                     props.setProfileModalStatus(false)
                 }}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
-                <div className="sidenavLink"> <DashboardIcon className='sidebarIcons' /> Subscriptions</div>
+                <div className="sidenavLink" onClick={getStations}> <DashboardIcon className='sidebarIcons' /> Subscriptions</div>
                 <div className='sidenavLink' onClick={logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 
@@ -60,8 +85,8 @@ export default function Sidebar(props) {
                     !props.usedStation &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
-                        <div className='chargingBlockTitle'>{props.selectedStation.stationName}</div>
-                        <div className='chargingBlockAddress'>{props.selectedStation.address}</div>
+                        <div className='chargingBlockTitle'>{props.selectedStation.station_name}</div>
+                        <div className='chargingBlockAddress'>{props.selectedStation.station_address}</div>
                         <table className='chargingBlockDetails'>
                             <thead/>
                             <tbody>
@@ -74,7 +99,7 @@ export default function Sidebar(props) {
                                     Power:
                                 </td>
                                 <td>
-                                    {props.selectedStation.power} kWh
+                                    {props.selectedStation.power}
                                 </td>
                             </tr>
                             <tr>
@@ -82,14 +107,25 @@ export default function Sidebar(props) {
                                     Type:
                                 </td>
                                 <td>
-                                    {props.selectedStation.type}
+                                    {props.selectedStation.station_type}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Free:
+                                </td>
+                                <td>
+                                    {props.selectedStation.is_taken === 0 ? <span>Yes</span> : <span>No</span>}
                                 </td>
                             </tr>
                             </tbody>
                         </table>
+                        {props.selectedStation.is_taken === 0 ?
                         <button className='startButton' onClick={() => {
+                            startCharging()
                             props.setUsedStation(props.selectedStation)
                         }}>Start charging</button>
+                            : null }
                     </div>
                 </div>
                 }
@@ -98,7 +134,7 @@ export default function Sidebar(props) {
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
                         <div className='chargingBlockTitle'>Your active connection</div>
-                        <div className='chargingBlockAddress'>{props.usedStation.stationName}</div>
+                        <div className='chargingBlockAddress'>{props.usedStation.station_name}</div>
                         <table className='chargingBlockDetails' style={{marginLeft: '50px'}}>
                             <thead/>
                             <tbody>
@@ -116,7 +152,10 @@ export default function Sidebar(props) {
                             </tr>
                             </tbody>
                         </table>
-                        <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => props.setUsedStation(null)}>Stop charging</button>
+                        <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => {
+                            stopCharging()
+                            props.setUsedStation(null)
+                        }}>Stop charging</button>
                     </div>
                 </div>
                 }

@@ -1,8 +1,11 @@
 import mapStyles from "../mapStyles";
-import React from "react";
+import React, {useEffect} from "react";
 import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
-import * as StationsData from "../data/data.json";
 import chargingStationPicture from "../img/charging_station.png";
+import Axios from "axios";
+
+
+let StationsData = {}
 
 const mapContainerStyle = {
     width: '100vw',
@@ -20,6 +23,11 @@ const options = {
 
 function Map(props) {
 
+    useEffect(() => {
+        Axios.get('http://localhost:3001/stations_data').then((response) => {
+            StationsData = response.data
+        })
+    })
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: 'AIzaSyAcGZ0vhjGlVA0UZdmIUH76b_JacMm4A-c'
@@ -30,11 +38,11 @@ function Map(props) {
         <div>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
-                zoom={14}
+                zoom={13}
                 center={OuluCoordinates}
                 options={options}
             >
-                {StationsData.stations.map((station, index) => <Marker
+                {StationsData.map((station, index) => <Marker
                         key={index}
                         onClick={() => {props.setSelectedStation(station)}}
                         position={{lat: station.lat, lng: station.lng}}
@@ -50,8 +58,8 @@ function Map(props) {
                     props.setSelectedStation(null)
                 }}>
                     <div>
-                        <span style={{fontSize: '18px', fontWeight: '600'}}>{props.selectedStation.stationName}</span><br/>
-                        <span style={{fontSize: '14px', fontWeight: '400'}}>{props.selectedStation.address}</span>
+                        <span style={{fontSize: '18px', fontWeight: '600'}}>{props.selectedStation.station_name}</span><br/>
+                        <span style={{fontSize: '14px', fontWeight: '400'}}>{props.selectedStation.station_address}</span>
                         <table>
                             <thead/>
                             <tbody>
@@ -64,7 +72,7 @@ function Map(props) {
                                     Power:
                                 </td>
                                 <td>
-                                    {props.selectedStation.power} kWh
+                                    {props.selectedStation.power}
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +80,7 @@ function Map(props) {
                                     Type:
                                 </td>
                                 <td>
-                                    {props.selectedStation.type}
+                                    {props.selectedStation.station_type}
                                 </td>
                             </tr>
                             </tbody>
