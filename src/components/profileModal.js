@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import './profileModal.css'
 import CloseIcon from '@material-ui/icons/Close';
 import ChangeEmail from './changeEmail'
+import ChangePassword from './changePassword'
 
 const customStyles = {
     content : {
@@ -46,10 +47,12 @@ export default function ProfileModal(props) {
                         handleNotificationsSuccess={props.handleNotificationsSuccess}
                     />
                     <div style={{marginTop: '25px'}}>
-                        <span className='ModalTitle'>Change password</span><br/>
-                        Old password: <input style={{marginLeft: '7px', marginTop: '10px'}} type="password"/> <br/>
-                        New password: <input type="password"/> <br/>
-                        <button className='profileButton'>Change password</button>
+                        <ChangePassword
+                            loggedInUser={props.loggedInUser}
+                            handleNotificationsDanger={props.handleNotificationsDanger}
+                            setLoggedInUser={props.setLoggedInUser}
+                            handleNotificationsSuccess={props.handleNotificationsSuccess}
+                        />
                     </div>
                 </div>
             </div>

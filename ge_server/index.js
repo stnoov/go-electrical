@@ -170,6 +170,38 @@ app.post('/user/:id/change_email', (req, res) => {
         )
 })
 
+app.post('/user/:id/change_password', (req, res) => {
+       db.query(
+           'SELECT * FROM users WHERE email = ?',
+            req.body.email,
+            (err, result) => {
+               if(err){
+                   res.send(false)
+               }
+                bcrypt.compare(req.body.oldPassword, result[0].password, (err, response) => {
+                    console.log(response)
+                    if(response === true) {
+                        bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
+                            db.query(
+                                'UPDATE users SET password=? WHERE email=?',
+                                [hash, req.body.email],
+                                (errUpdate, updateResult) => {
+                                    req.session.user = result
+                                    res.send(req.session.user)
+                                }
+                            )
+                        })
+                    } else {
+                        res.send(false)
+                    }
+                })
+           }
+
+       )
+            })
+
+
+
 app.listen(3001, () => {
     console.log('Running server')
 })

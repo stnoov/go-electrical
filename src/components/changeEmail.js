@@ -30,20 +30,6 @@ export default function ChangeEmail(props) {
         }
     })
 
-    // const changeEmail = () => {
-    //     Axios.post("http://localhost:3001/user/{props.loggedInUser.id}/change_email", {
-    //         email: props.loggedInUser.email,
-    //         newEmail: newEmail
-    //     }).then((response) => {
-    //         if(response.data === false) {
-    //             props.handleNotificationsDanger()
-    //         } else {
-    //             props.setLoggedInUser(response.data[0])
-    //             props.handleNotificationsSuccess('Your email was changed!')
-    //         }
-    //     })
-    // }
-
     return (
         <div style={{marginTop: '-55px'}}>
             <span className='ModalTitle'>Change email</span><br/>
