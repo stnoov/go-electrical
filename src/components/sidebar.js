@@ -10,6 +10,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Axios from "axios";
+import moment from "moment";
 
 export default function Sidebar(props) {
     const [menuVisibility, setMenuVisibility] = React.useState("visible")
@@ -31,12 +32,22 @@ export default function Sidebar(props) {
     }
 
     const startCharging = () => {
-        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
-            userId: props.loggedInUser.id,
-            stationId: props.selectedStation.station_id,
-            started_at: Date.now()
-        })
-        props.handleNotificationsSuccess('Charging started, you can track it in connections section')
+        if (props.loggedInUser.active_connection !== 0) {
+            props.handleNotificationsDanger()
+        } else {
+            Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
+                userId: props.loggedInUser.id,
+                stationId: props.selectedStation.station_id,
+                started_at: moment().toDate()
+            }).then((response) => {
+                console.log(props.loggedInUser.active_connection)
+                console.log(response.data[0].active_connection)
+                props.loggedInUser.active_connection = response.data[0].active_connection
+                console.log(props.loggedInUser.active_connection)
+                props.setUsedStation(props.selectedStation)
+                props.handleNotificationsSuccess('Charging has been started')
+            })
+        }
     }
 
 
@@ -65,13 +76,18 @@ export default function Sidebar(props) {
                 <div className='sidenavLink' onClick={() => {
                     props.setProfileModalStatus(true)
                     props.setBalanceModalStatus(false)
+                    props.setHistoryModalStatus(false)
+                    console.log(props.loggedInUser)
                 }}> <AccountBoxIcon className='sidebarIcons'/>Profile</div>
                 <div className='sidenavLink' onClick={() => {
                     props.setHistoryModalStatus(true)
+                    props.setBalanceModalStatus(false)
+                    props.setProfileModalStatus(false)
                     props.getConnections()
                 } }> <HistoryIcon className='sidebarIcons'/> Connections</div>
                 <div className='sidenavLink' onClick={() => {
                     props.setBalanceModalStatus(true)
+                    props.setHistoryModalStatus(false)
                     props.setProfileModalStatus(false)
                 }}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
                 <div className="sidenavLink" onClick={getStations}> <DashboardIcon className='sidebarIcons' /> Subscriptions</div>
@@ -79,7 +95,7 @@ export default function Sidebar(props) {
             </div>
 
                 {props.selectedStation &&
-                    !props.usedStation &&
+                 props.loggedInUser.active_connection === 0 &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
                         <div className='chargingBlockTitle'>{props.selectedStation.station_name}</div>
@@ -120,18 +136,17 @@ export default function Sidebar(props) {
                         {props.selectedStation.is_taken === 0 ?
                         <button className='startButton' onClick={() => {
                             startCharging()
-                            props.setUsedStation(props.selectedStation)
                         }}>Start charging</button>
                             : null }
                     </div>
                 </div>
                 }
 
-                {props.usedStation &&
+                {props.loggedInUser.active_connection !==0 && props.loggedInUser.active_connection !== null &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
                         <div className='chargingBlockTitle'>Your active connection</div>
-                        <div className='chargingBlockAddress'>{props.usedStation.station_name}</div>
+                        <div className='chargingBlockAddress'>123</div>
                         <table className='chargingBlockDetails' style={{marginLeft: '50px'}}>
                             <thead/>
                             <tbody>

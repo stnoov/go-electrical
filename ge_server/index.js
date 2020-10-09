@@ -217,31 +217,64 @@ app.post('/user/:id/station/:id/start_charging', (req, res) => {
         (err, result) => {
             db.query(
                 'INSERT INTO connections(user_id, station_id, started_at, is_over) VALUES(?,?,?,0)',
-                [req.body.userId, req.body.stationId, req.body.started_at]
+                [req.body.userId, req.body.stationId, req.body.started_at],
+                (err, result) => {
+                    let active_con  = result.insertId
+                    db.query(
+                        'UPDATE users SET active_connection=? WHERE id=?',
+                        [active_con, req.body.userId],
+                        (error, response) => {
+                            db.query(
+                                "SELECT * FROM users WHERE id = ?",
+                                req.body.userId,
+                                (err, result1) => {
+                                    console.log(result1)
+                                    res.send(result1)
+                                }
+                            )
+                        }
+                    )
+                }
             )
+
         }
     )
 })
 
 app.post('/user/:id/station/:id/stop_charging', (req, res) => {
     db.query(
-        'UPDATE stations SET is_taken=0 WHERE station_id=?',
-        req.body.stationId,
+        'SELECT * FROM connections WHERE connection_id=?',
+        req.body.activeCon,
         (err, result) => {
-            db.query(
-                'UPDATE connections SET is_over=1 WHERE station_id=?',
-                [req.body.stationId]
-            )
+            db.query('UPDATE stations SET is_taken=0 WHERE station_id=?',
+                result[0].station_id)
+        }
+    )
+    db.query(
+        'UPDATE connections SET is_over=1, finished_at=? WHERE connection_id=?',
+        [req.body.finishedAt, req.body.activeCon]
+    )
+
+    db.query(
+        'UPDATE users SET active_connection=0 WHERE id=? AND active_connection=?',
+        [req.body.userId, req.body.activeCon]
+    )
+    db.query(
+        "SELECT * FROM users WHERE id = ?",
+        req.body.userId,
+        (err, result) => {
+            req.session.user = result
+            res.send(req.session.user)
         }
     )
 })
 
+
 app.post('/connections_data', (req, res) => {
     db.query(
-        'SELECT connections.connection_id, stations.station_name, connections.station_id, stations.station_address, connections.is_over FROM connections INNER JOIN stations ON connections.station_id = stations.station_id WHERE user_id=?',
+        'SELECT connections.connection_id, stations.station_name, connections.station_id, stations.station_address, connections.is_over, connections.started_at, stations.price FROM connections INNER JOIN stations ON connections.station_id = stations.station_id WHERE user_id=?',
         req.body.userId,
         (err, response) => {
-            console.log(response)
             res.send(response)
         }
     )

@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from 'react-modal'
-import Axios from "axios";
+import Moment from 'react-moment';
 import './balanceModal.css'
 import CloseIcon from '@material-ui/icons/Close';
 import './connections.css'
@@ -33,6 +33,9 @@ export default function Connections(props) {
                 <th>Station ID:</th>
                 <th>Station Name:</th>
                 <th>Station Address:</th>
+                <th>Finished at:</th>
+                <th>Time active:</th>
+                <th>Total bill:</th>
                 <th>Status:</th>
             </tr>
             </thead>
@@ -43,7 +46,12 @@ export default function Connections(props) {
                     <td>{connection.station_id}</td>
                     <td>{connection.station_name}</td>
                     <td>{connection.station_address}</td>
-                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() => props.stopCharging(connection.station_id)} className='stopCharging'> Stop Charging</button>}</td>
+                    <td>{connection.finished_at == null ? 'In progress' : connection.finished_at}</td>
+                    <td>
+                        {connection.finished_at == null ? <Moment fromNow ago>{connection.started_at}</Moment> : connection.finished_at.subtract(connection.started_at) }
+                    </td>
+                    <td>5€</td>
+                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() => props.stopCharging()} className='stopCharging'> Stop Charging</button>}</td>
                 </tr>
             )}
             </tbody>

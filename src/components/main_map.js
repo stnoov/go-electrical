@@ -42,16 +42,18 @@ function Map(props) {
                 center={OuluCoordinates}
                 options={options}
             >
-                {StationsData.map((station, index) => <Marker
-                        key={index}
-                        onClick={() => {props.setSelectedStation(station)}}
-                        position={{lat: station.lat, lng: station.lng}}
-                        icon={{
-                            url: chargingStationPicture,
-                            scaledSize: new window.google.maps.Size(25, 25)
-                        }}
-                    />
-                )
+                {StationsData.length > 0 &&
+                    StationsData.map((station, index) => <Marker
+                            key={index}
+                            onClick={() => {props.setSelectedStation(station)}}
+                            position={{lat: station.lat, lng: station.lng}}
+                            icon={{
+                                url: chargingStationPicture,
+                                scaledSize: new window.google.maps.Size(25, 25)
+                            }}
+                        />
+                    )
+                    }
                 }
 
                 {props.selectedStation ? (<InfoWindow position={{lat: props.selectedStation.lat, lng: props.selectedStation.lng}} onCloseClick={() => {

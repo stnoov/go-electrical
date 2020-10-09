@@ -8,6 +8,7 @@ import ProfileModal from './components/profileModal'
 import ReactNotification, {store} from "react-notifications-component";
 import Connections from "./components/connections";
 import Axios from "axios";
+import moment from "moment";
 
 
 
@@ -31,13 +32,18 @@ function App() {
         })
     }
 
-    const stopCharging = (station_id) => {
+    const stopCharging = () => {
         Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
             userId: loggedInUser.id,
             userEmail: loggedInUser.email,
-            stationId: station_id
-        })
-        handleNotificationsSuccess('Charging stopped')
+            activeCon: loggedInUser.active_connection,
+            finishedAt: moment().toDate()
+        }).then(
+            (response) => {
+                setLoggedInUser(response.data[0])
+            }
+        )
+        handleNotificationsSuccess('Charging has been stopped')
     }
 
     const handleNotificationsSuccess = (message) => {
@@ -105,6 +111,7 @@ function App() {
                 historyModalStatus={historyModalStatus}
                 setHistoryModalStatus={setHistoryModalStatus}
                 handleNotificationsSuccess={handleNotificationsSuccess}
+                handleNotificationsDanger={handleNotificationsDanger}
                 setProfileModalStatus={setProfileModalStatus}
                 setLoggedIn={setLoggedIn}
                 loggedInUser={loggedInUser}

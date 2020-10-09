@@ -13,7 +13,7 @@
     "animate.css-react": "^1.0.0",
     "axios": "^0.20.0",
     "formik": "^2.1.5",
-    "moment": "^2.29.0",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
@@ -41,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-moment": "^1.0.0"
   }
 }
