@@ -228,7 +228,7 @@ app.post('/user/:id/station/:id/start_charging', (req, res) => {
                                 "SELECT * FROM users WHERE id = ?",
                                 req.body.userId,
                                 (err, result1) => {
-                                    console.log(result1)
+                                    console.log(result1 )
                                     res.send(result1)
                                 }
                             )
@@ -241,14 +241,15 @@ app.post('/user/:id/station/:id/start_charging', (req, res) => {
     )
 })
 
-app.post('/user/:id/station/:id/stop_charging', (req, res) => {
-    db.query(
+app.post('/user/:id/station/:id/stop_charging', async (req, res) => {
+     db.query(
         'SELECT * FROM connections WHERE connection_id=?',
         req.body.activeCon,
         (err, result) => {
             db.query('UPDATE stations SET is_taken=0 WHERE station_id=?',
-                result[0].station_id)
+            result[0].station_id)
         }
+
     )
     db.query(
         'UPDATE connections SET is_over=1, finished_at=? WHERE connection_id=?',

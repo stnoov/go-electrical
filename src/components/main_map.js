@@ -1,17 +1,16 @@
 import mapStyles from "../mapStyles";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
 import chargingStationPicture from "../img/charging_station.png";
 import Axios from "axios";
 
 
-let StationsData = {}
 
 const mapContainerStyle = {
     width: '100vw',
     height: '100vh'
 }
-const OuluCoordinates = {
+const ouluCoordinates = {
     lat: 65.0121,
     lng: 25.4651
 }
@@ -21,11 +20,11 @@ const options = {
     zoomControl: true
 }
 
-function Map(props) {
-
+ const Map = (props) => {
+    const [stations, setStations] = useState([]);
     useEffect(() => {
         Axios.get('http://localhost:3001/stations_data').then((response) => {
-            StationsData = response.data
+            setStations(response.data);
         })
     })
 
@@ -39,11 +38,11 @@ function Map(props) {
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={13}
-                center={OuluCoordinates}
+                center={ouluCoordinates}
                 options={options}
             >
-                {StationsData.length > 0 &&
-                    StationsData.map((station, index) => <Marker
+                {stations.length > 0 &&
+                    stations.map((station, index) => <Marker
                             key={index}
                             onClick={() => {props.setSelectedStation(station)}}
                             position={{lat: station.lat, lng: station.lng}}

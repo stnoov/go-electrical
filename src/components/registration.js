@@ -1,6 +1,6 @@
 import React from "react";
 import ReportIcon from "@material-ui/icons/Report";
-import {useFormik} from "formik";
+import {useFormik,} from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
 
@@ -9,7 +9,7 @@ import Axios from "axios";
 
 export default function Registration(props) {
 
-    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+    const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm, isSubmitting} = useFormik({
         initialValues: {
             first_name: '',
             last_name: '',
@@ -33,11 +33,10 @@ export default function Registration(props) {
             }).then((response) => {
                 if(response.data === true) {
                     props.handleNotificationsSuccess('You have successfully registered!')
+                    resetForm();
                 } else {
                     props.handleNotificationsDanger(response.data)
                 }
-
-
             })
         }
     })
@@ -57,7 +56,7 @@ export default function Registration(props) {
                     id='first_name'
                     name='first_name'
                     placeholder='Your first name'/>
-                {touched.first_name && errors.first_name ? (
+                {errors.first_name && touched.first_name && errors.first_name ? (
                     <div className='inputErrors'><ReportIcon className='sidebarIcons'/>{errors.first_name}</div>
                 ) : null }
                 <input
@@ -88,10 +87,10 @@ export default function Registration(props) {
                     id='password'
                     name='password'
                     placeholder='Your password'/>
-                {touched.password && errors.password ? (
+                {touched.password && errors.password && (
                     <div className='inputErrors'><ReportIcon className='sidebarIcons'/>{errors.password}</div>
-                ) : null }
-                <button type="submit" className='registerButton'>Register</button>
+                ) }
+                <button type="submit" className='registerButton' disabled={isSubmitting} >Register</button>
             </form>
         </div>
     )
