@@ -3,7 +3,6 @@ import './sidebar.css'
 import CropDinIcon from '@material-ui/icons/CropDin';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import SearchIcon from '@material-ui/icons/Search'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HistoryIcon from '@material-ui/icons/History';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -69,10 +68,6 @@ export default function Sidebar(props) {
                 setMenuVisibility("hidden")
                 setToggleVisibility("visible")
             }} style={{display: 'inline', cursor: 'pointer'}}/>
-                <div className="headerSearch">
-                    <input type="text" className="headerSearchInput" />
-                    <SearchIcon className='headerIcon' />
-                </div>
             <div className='navBlock'>
                 <div className='sidenavLink' onClick={() => {
                     props.setProfileModalStatus(true)

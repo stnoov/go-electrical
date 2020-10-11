@@ -3,17 +3,15 @@ import React, {useEffect, useState} from "react";
 import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
 import chargingStationPicture from "../img/charging_station.png";
 import Axios from "axios";
-
+import SearchBar from "./searchBar";
 
 
 const mapContainerStyle = {
     width: '100vw',
     height: '100vh'
 }
-const ouluCoordinates = {
-    lat: 65.0121,
-    lng: 25.4651
-}
+
+
 const options = {
     styles: mapStyles,
     disableDefaultUI: true,
@@ -27,6 +25,10 @@ const options = {
             setStations(response.data);
         })
     })
+     const [center,setCenter] = React.useState({
+         lat: 65.0121,
+         lng: 25.4651
+     })
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: 'AIzaSyAcGZ0vhjGlVA0UZdmIUH76b_JacMm4A-c'
@@ -35,10 +37,13 @@ const options = {
     if(!isLoaded) return "Loading maps"
     return (
         <div>
+            <SearchBar
+                setCenter={setCenter}
+            />
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={13}
-                center={ouluCoordinates}
+                center={center}
                 options={options}
             >
                 {stations.length > 0 &&

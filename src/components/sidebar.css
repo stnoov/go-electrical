@@ -20,21 +20,6 @@
     border-bottom-right-radius: 3px;
 }
 
-.headerSearchInput {
-    height: 12px;
-    padding: 10px;
-    border: none;
-    width: 270px;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-
-.headerSearch {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
 .sidenav .navBlock {
     margin-top: 50px;
 
