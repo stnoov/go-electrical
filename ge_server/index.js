@@ -246,18 +246,19 @@ app.post('/user/:id/station/:id/stop_charging', async (req, res) => {
         'SELECT * FROM connections WHERE connection_id=?',
         req.body.activeCon,
         (err, result) => {
+            console.log(result)
             db.query('UPDATE stations SET is_taken=0 WHERE station_id=?',
             result[0].station_id)
         }
-
     )
+
     db.query(
         'UPDATE connections SET is_over=1, finished_at=? WHERE connection_id=?',
         [req.body.finishedAt, req.body.activeCon]
     )
 
     db.query(
-        'UPDATE users SET active_connection=0 WHERE id=? AND active_connection=?',
+        'UPDATE users SET active_connection=0, balance=balance-1 WHERE id=? AND active_connection=?',
         [req.body.userId, req.body.activeCon]
     )
     db.query(
@@ -273,7 +274,7 @@ app.post('/user/:id/station/:id/stop_charging', async (req, res) => {
 
 app.post('/connections_data', (req, res) => {
     db.query(
-        'SELECT connections.connection_id, stations.station_name, connections.station_id, stations.station_address, connections.is_over, connections.started_at, stations.price FROM connections INNER JOIN stations ON connections.station_id = stations.station_id WHERE user_id=?',
+        'SELECT connections.connection_id, stations.station_name, connections.station_id, stations.station_address, connections.is_over, connections.started_at, stations.price, connections.finished_at FROM connections INNER JOIN stations ON connections.station_id = stations.station_id WHERE user_id=?',
         req.body.userId,
         (err, response) => {
             res.send(response)

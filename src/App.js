@@ -32,17 +32,18 @@ function App() {
         })
     }
 
-    const stopCharging = () => {
+    const stopCharging = (active_con) => {
         Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
             userId: loggedInUser.id,
             userEmail: loggedInUser.email,
-            activeCon: loggedInUser.active_connection,
+            activeCon: active_con,
             finishedAt: moment().toDate()
         }).then(
             (response) => {
                 setLoggedInUser(response.data[0])
             }
         )
+        setUsedStation(null)
         handleNotificationsSuccess('Charging has been stopped')
     }
 

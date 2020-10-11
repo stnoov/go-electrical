@@ -33,6 +33,9 @@ export default function ProfileModal(props) {
                             Name: {props.loggedInUser.first_name + " " + props.loggedInUser.last_name}
                         </div>
                         <div className='infoField'>
+                            Email: {props.loggedInUser.email}
+                        </div>
+                        <div className='infoField'>
                             Balance: {props.loggedInUser.balance} <span style={{fontWeight: '600'}}>€</span>
                         </div>
                         <div className='infoField'>

@@ -22,6 +22,7 @@ export default function Sidebar(props) {
                 props.setLoggedIn(false)
                 props.setBalanceModalStatus(false)
                 props.setProfileModalStatus(false)
+                props.setHistoryModalStatus(false)
             }
         })
     }
@@ -145,29 +146,14 @@ export default function Sidebar(props) {
                 {props.loggedInUser.active_connection !==0 && props.loggedInUser.active_connection !== null &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
-                        <div className='chargingBlockTitle'>Your active connection</div>
-                        <div className='chargingBlockAddress'>123</div>
-                        <table className='chargingBlockDetails' style={{marginLeft: '50px'}}>
-                            <thead/>
-                            <tbody>
-                            <tr>
-                                <td>Time active:</td>
-                                <td>15 min</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Power consumed:
-                                </td>
-                                <td>
-                                    100 kWh
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button style={{backgroundColor: '#DC143C'}} className='startButton' onClick={() => {
-                            props.stopCharging()
-                            props.setUsedStation(null)
-                        }}>Stop charging</button>
+                        <div className='chargingBlockTitle'>Connection has been started</div>
+                        <button style={{backgroundColor: '#f0ad4e'}} className='startButton' onClick={() => {
+                            props.setHistoryModalStatus(true)
+                            props.setBalanceModalStatus(false)
+                            props.setProfileModalStatus(false)
+                            props.getConnections()
+
+                        }}>Open connections</button>
                     </div>
                 </div>
                 }

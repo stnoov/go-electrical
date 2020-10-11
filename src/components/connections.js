@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from 'react-modal'
 import Moment from 'react-moment';
+import moment from "moment";
 import './balanceModal.css'
 import CloseIcon from '@material-ui/icons/Close';
 import './connections.css'
@@ -46,12 +47,16 @@ export default function Connections(props) {
                     <td>{connection.station_id}</td>
                     <td>{connection.station_name}</td>
                     <td>{connection.station_address}</td>
-                    <td>{connection.finished_at == null ? 'In progress' : connection.finished_at}</td>
+                    <td>{connection.finished_at == null ? 'In progress' : <Moment parse="YYYY-MM-DD HH:mm">
+                        {connection.finished_at}
+                    </Moment>}</td>
                     <td>
-                        {connection.finished_at == null ? <Moment fromNow ago>{connection.started_at}</Moment> : connection.finished_at.subtract(connection.started_at) }
+                        {connection.finished_at == null ? <Moment fromNow ago>{connection.started_at}</Moment> : moment.duration(moment(connection.finished_at).diff(moment(connection.started_at))).minutes() + " min" }
                     </td>
-                    <td>5€</td>
-                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() => props.stopCharging()} className='stopCharging'> Stop Charging</button>}</td>
+                    <td>{connection.is_over !== 1 ? 'In progress' :
+                        Math.round(moment.duration(moment(connection.finished_at).diff(moment(connection.started_at))).minutes() * connection.price ) + '€'
+                    }</td>
+                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() => props.stopCharging(connection.connection_id)} className='stopCharging'> Stop Charging</button>}</td>
                 </tr>
             )}
             </tbody>
