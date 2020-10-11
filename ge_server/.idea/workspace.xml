@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../src/components/searchBar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/components/searchBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/authentication.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/authentication.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/components/main_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/main_map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/searchBar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

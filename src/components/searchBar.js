@@ -53,6 +53,7 @@ export default function SearchBar(props) {
                                         lat: suggestion.lat,
                                         lng: suggestion.lng
                                     })
+                                    props.setZoom(17)
 
                              }}
                              getSuggestionValue={(suggestion) => suggestion.name}

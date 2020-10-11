@@ -29,7 +29,7 @@ const options = {
          lat: 65.0121,
          lng: 25.4651
      })
-
+    const [zoom, setZoom] = React.useState(13)
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: 'AIzaSyAcGZ0vhjGlVA0UZdmIUH76b_JacMm4A-c'
     });
@@ -39,10 +39,11 @@ const options = {
         <div>
             <SearchBar
                 setCenter={setCenter}
+                setZoom={setZoom}
             />
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
-                zoom={13}
+                zoom={zoom}
                 center={center}
                 options={options}
             >
@@ -87,6 +88,14 @@ const options = {
                                 </td>
                                 <td>
                                     {props.selectedStation.station_type}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Free:
+                                </td>
+                                <td>
+                                    {props.selectedStation.is_taken === 0 ? 'Yes' : 'No'}
                                 </td>
                             </tr>
                             </tbody>

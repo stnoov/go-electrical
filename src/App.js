@@ -23,6 +23,9 @@ function App() {
     const [selectedStation, setSelectedStation] = React.useState(null)
     const [usedStation, setUsedStation] = React.useState(null)
 
+    React.useEffect(() => {
+        document.title = "Go Electrical"
+    }, []);
 
     const getConnections = () => {
         Axios.post('http://localhost:3001/connections_data', {
