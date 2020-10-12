@@ -22,7 +22,7 @@ export default function ChangePassword(props) {
                 newPassword: values.newPassword
             }).then((response) => {
                 if (response.data === false) {
-                    props.handleNotificationsDanger()
+                    props.handleNotificationsDanger('Wrong password')
                 } else {
                     props.setLoggedInUser(response.data[0])
                     props.handleNotificationsSuccess('Your password was updated!')

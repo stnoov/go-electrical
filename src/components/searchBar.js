@@ -11,7 +11,7 @@ export default function SearchBar(props) {
     return (
         <div className='headerSearch'>
                 <Autosuggest inputProps={{
-                    placeholder: "Search for specific station",
+                    placeholder: "Search for a station",
                     autoComplete: "abcd",
                     name: "stations",
                     id: "searchStations",

@@ -258,8 +258,8 @@ app.post('/user/:id/station/:id/stop_charging', async (req, res) => {
     )
 
     db.query(
-        'UPDATE users SET active_connection=0, balance=balance-1 WHERE id=? AND active_connection=?',
-        [req.body.userId, req.body.activeCon]
+        'UPDATE users SET active_connection=0, balance=balance-? WHERE id=? AND active_connection=?',
+        [req.body.bill, req.body.userId, req.body.activeCon]
     )
     db.query(
         "SELECT * FROM users WHERE id = ?",

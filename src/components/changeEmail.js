@@ -21,7 +21,7 @@ export default function ChangeEmail(props) {
                 newEmail: values.newEmail
             }).then((response) => {
                 if (response.data === false) {
-                    props.handleNotificationsDanger()
+                    props.handleNotificationsDanger('Email is already in use')
                 } else {
                     props.setLoggedInUser(response.data[0])
                     props.handleNotificationsSuccess('Your email was changed!')

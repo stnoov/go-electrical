@@ -32,18 +32,15 @@ export default function Sidebar(props) {
     }
 
     const startCharging = () => {
-        if (props.loggedInUser.active_connection !== 0) {
-            props.handleNotificationsDanger()
+        if (props.loggedInUser.balance <= 0) {
+            props.handleNotificationsDanger('Please, add balance first')
         } else {
             Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
                 userId: props.loggedInUser.id,
                 stationId: props.selectedStation.station_id,
                 started_at: moment().toDate()
             }).then((response) => {
-                console.log(props.loggedInUser.active_connection)
-                console.log(response.data[0].active_connection)
                 props.loggedInUser.active_connection = response.data[0].active_connection
-                console.log(props.loggedInUser.active_connection)
                 props.setUsedStation(props.selectedStation)
                 props.handleNotificationsSuccess('Charging has been started')
             })
@@ -141,14 +138,14 @@ export default function Sidebar(props) {
                 {props.loggedInUser.active_connection !==0 && props.loggedInUser.active_connection !== null &&
                 <div className='chargingBlock'>
                     <div className='chargingBlockContent'>
-                        <div className='chargingBlockTitle'>Connection has been started</div>
+                        <div className='chargingBlockTitle'>You have an active connection</div>
                         <button style={{backgroundColor: '#f0ad4e'}} className='startButton' onClick={() => {
                             props.setHistoryModalStatus(true)
                             props.setBalanceModalStatus(false)
                             props.setProfileModalStatus(false)
                             props.getConnections()
 
-                        }}>Open connections</button>
+                        }}>View connections</button>
                     </div>
                 </div>
                 }

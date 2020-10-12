@@ -21,10 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/authentication.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/authentication.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/main_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/main_map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/balanceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/balanceModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/changeEmail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/changeEmail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/changePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/connections.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/connections.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/searchBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/searchBar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/components/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/searchBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/sidebar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +79,7 @@
       <workItem from="1602241270699" duration="2715000" />
       <workItem from="1602256047124" duration="405000" />
       <workItem from="1602434571672" duration="7328000" />
+      <workItem from="1602488355018" duration="2827000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,7 @@ import './connections.css'
 
 const customStyles = {
     content : {
-        top                   : '30%',
+        top                   : '40%',
         left                  : '60%',
         right                 : '40%',
         bottom                : 'auto',
@@ -55,8 +55,12 @@ export default function Connections(props) {
                     </td>
                     <td>{connection.is_over !== 1 ? 'In progress' :
                         Math.round(moment.duration(moment(connection.finished_at).diff(moment(connection.started_at))).minutes() * connection.price ) + '€'
-                    }</td>
-                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() => props.stopCharging(connection.connection_id)} className='stopCharging'> Stop Charging</button>}</td>
+                    }
+
+                    </td>
+                    <td>{connection.is_over === 1 ? 'Ended' : <button onClick={() =>  {
+                        props.stopCharging(connection.connection_id, Math.round(moment.duration(moment(moment().toDate()).diff(moment(connection.started_at))).minutes() * connection.price ))
+                    }} className='stopCharging'> Stop Charging</button>}</td>
                 </tr>
             )}
             </tbody>

@@ -35,12 +35,14 @@ function App() {
         })
     }
 
-    const stopCharging = (active_con) => {
+    const stopCharging = (active_con, bill) => {
+        console.log(bill)
         Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
             userId: loggedInUser.id,
             userEmail: loggedInUser.email,
             activeCon: active_con,
-            finishedAt: moment().toDate()
+            finishedAt: moment().toDate(),
+            bill: bill
         }).then(
             (response) => {
                 setLoggedInUser(response.data[0])
@@ -65,10 +67,10 @@ function App() {
         })
     }
 
-    const handleNotificationsDanger = () => {
+    const handleNotificationsDanger = (message) => {
         store.addNotification({
             title: "ERROR!",
-            message: "Ooops! Something went wrong!",
+            message: message,
             type: "danger",
             container: 'top-right',
             insert: 'top',

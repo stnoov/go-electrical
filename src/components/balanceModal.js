@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const customStyles = {
     content : {
-        top                   : '10%',
+        top                   : '30%',
         left                  : '60%',
         right                 : '40%',
         bottom                : 'auto',
