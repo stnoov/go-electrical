@@ -24,7 +24,7 @@ const options = {
         Axios.get('https://go-electrical-server.herokuapp.com/stations_data').then((response) => {
             setStations(response.data);
         })
-    })
+    }, [])
      const [center,setCenter] = React.useState({
          lat: 65.0121,
          lng: 25.4651
