@@ -104,15 +104,6 @@ app.post('/login', (req, res) => {
     )
 })
 
-app.get('/login', ((req, res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user
-        })
-    } else {
-        res.send({loggedIn: false})
-    }
-}))
-
 app.get('/logout', ((req, res) => {
     req.session.destroy(function(err) {
        res.send({loggedIn: false})
