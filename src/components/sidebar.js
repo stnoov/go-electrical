@@ -16,19 +16,11 @@ export default function Sidebar(props) {
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
     const logout = () => {
-        Axios.get("https://go-electrical-server.herokuapp.com/logout").then((response) => {
-            if(response.data.loggedIn === false) {
-                props.setLoggedIn(false)
-                props.setBalanceModalStatus(false)
-                props.setProfileModalStatus(false)
-                props.setHistoryModalStatus(false)
-            }
-        })
-    }
-
-    const getStations = () => {
-        Axios.get('https://go-electrical-server.herokuapp.com/stations_data').then((response) =>
-        console.log(response.data))
+        props.setLoggedInUser('')
+        props.setLoggedIn(false)
+        props.setBalanceModalStatus(false)
+        props.setProfileModalStatus(false)
+        props.setHistoryModalStatus(false)
     }
 
     const startCharging = () => {
@@ -83,7 +75,6 @@ export default function Sidebar(props) {
                     props.setHistoryModalStatus(false)
                     props.setProfileModalStatus(false)
                 }}> <AccountBalanceWalletIcon className='sidebarIcons'/> Add balance</div>
-                <div className="sidenavLink" onClick={getStations}> <DashboardIcon className='sidebarIcons' /> Subscriptions</div>
                 <div className='sidenavLink' onClick={logout}> <ExitToAppIcon className='sidebarIcons'/>Logout</div>
             </div>
 

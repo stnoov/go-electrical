@@ -110,6 +110,7 @@ function App() {
         />
         {loggedIn
         ? <Sidebar
+                setLoggedInUser={setLoggedInUser}
                 stopCharging={stopCharging}
                 getConnections={getConnections}
                 currentConnections={currentConnections}
