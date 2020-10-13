@@ -30,15 +30,6 @@ export default function LoginForm(props) {
         }
     })
 
-    useEffect(() => {
-        Axios.get("https://go-electrical-server.herokuapp.com/login").then((response) => {
-            if(response.data.loggedIn === true) {
-                props.setLoggedIn(true)
-                props.setLoggedInUser(response.data.user[0])
-            }
-        })
-    }, [])
-
     return (
 
         <div className="loginForm">
