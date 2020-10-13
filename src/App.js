@@ -28,7 +28,7 @@ function App() {
     }, []);
 
     const getConnections = () => {
-        Axios.post('http://localhost:3001/connections_data', {
+        Axios.post('https://go-electrical-server.herokuapp.com/connections_data', {
             userId: loggedInUser.id
         }).then((response) => {
             getCurrentConnections(response.data)
@@ -37,7 +37,7 @@ function App() {
 
     const stopCharging = (active_con, bill) => {
         console.log(bill)
-        Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
+        Axios.post('https://go-electrical-server.herokuapp.com/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/stop_charging', {
             userId: loggedInUser.id,
             userEmail: loggedInUser.email,
             activeCon: active_con,
