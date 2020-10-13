@@ -37,7 +37,7 @@ export default function LoginForm(props) {
                 props.setLoggedInUser(response.data.user[0])
             }
         })
-    })
+    }, [])
 
     return (
 
