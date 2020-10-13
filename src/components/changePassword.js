@@ -16,7 +16,7 @@ export default function ChangePassword(props) {
             newPassword: Yup.string().max(250, 'Password is too long!').min(6, 'New password must be at least 6 characters!').required('Password is required!')
         }),
         onSubmit: (values) => {
-            Axios.post("http://localhost:3001/user/{props.loggedInUser.id}/change_password", {
+            Axios.post("https://go-electrical-server.herokuapp.com/user/{props.loggedInUser.id}/change_password", {
                 email: props.loggedInUser.email,
                 oldPassword: values.oldPassword,
                 newPassword: values.newPassword

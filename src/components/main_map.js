@@ -21,7 +21,7 @@ const options = {
  const Map = (props) => {
     const [stations, setStations] = useState([]);
     useEffect(() => {
-        Axios.get('http://localhost:3001/stations_data').then((response) => {
+        Axios.get('https://go-electrical-server.herokuapp.com/stations_data').then((response) => {
             setStations(response.data);
         })
     })

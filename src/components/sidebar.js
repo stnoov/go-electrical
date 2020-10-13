@@ -16,7 +16,7 @@ export default function Sidebar(props) {
     const [toggleVisibility, setToggleVisibility] = React.useState("hidden")
 
     const logout = () => {
-        Axios.get("http://localhost:3001/logout").then((response) => {
+        Axios.get("https://go-electrical-server.herokuapp.com/logout").then((response) => {
             if(response.data.loggedIn === false) {
                 props.setLoggedIn(false)
                 props.setBalanceModalStatus(false)
@@ -27,7 +27,7 @@ export default function Sidebar(props) {
     }
 
     const getStations = () => {
-        Axios.get('http://localhost:3001/stations_data').then((response) =>
+        Axios.get('https://go-electrical-server.herokuapp.com/stations_data').then((response) =>
         console.log(response.data))
     }
 
@@ -35,7 +35,7 @@ export default function Sidebar(props) {
         if (props.loggedInUser.balance <= 0) {
             props.handleNotificationsDanger('Please, add balance first')
         } else {
-            Axios.post('http://localhost:3001/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
+            Axios.post('https://go-electrical-server.herokuapp.com/user/{props.loggedInUser.id}/station/{props.selectedStation.station_id}/start_charging', {
                 userId: props.loggedInUser.id,
                 stationId: props.selectedStation.station_id,
                 started_at: moment().toDate()

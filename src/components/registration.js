@@ -23,7 +23,7 @@ export default function Registration(props) {
             password: Yup.string().max(250, 'Password is too long!').min(6, 'Password must be at least 6 characters!').required('Password is required!')
         }),
         onSubmit: (values) => {
-            Axios.post("http://localhost:3001/register", {
+            Axios.post("https://go-electrical-server.herokuapp.com/register", {
                 first_name: values.first_name,
                 last_name: values.last_name,
                 email: values.email,

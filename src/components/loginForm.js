@@ -15,7 +15,7 @@ export default function LoginForm(props) {
             loginPassword: ''
         },
         onSubmit: (loginEmail,loginPassword) => {
-            Axios.post("http://localhost:3001/login", {
+            Axios.post("https://go-electrical-server.herokuapp.com/login", {
                 email: values.loginEmail,
                 password: values.loginPassword
             }).then((response) => {
@@ -31,7 +31,7 @@ export default function LoginForm(props) {
     })
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then((response) => {
+        Axios.get("https://go-electrical-server.herokuapp.com/login").then((response) => {
             if(response.data.loggedIn === true) {
                 props.setLoggedIn(true)
                 props.setLoggedInUser(response.data.user[0])

@@ -27,7 +27,7 @@ export default function SearchBar(props) {
                                  }
                                  try {
                                     const response = await Axios.get(
-                                        'http://localhost:3001/stations_data'
+                                        'https://go-electrical-server.herokuapp.com/stations_data'
                                     )
                                     const result = response.data.filter((row) => {
                                         return row.station_name.includes(value)

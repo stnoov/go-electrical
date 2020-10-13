@@ -16,7 +16,7 @@ export default function ChangeEmail(props) {
             newEmail: Yup.string().email('Invalid email').max(250, 'Email is too long!').min(8, 'Email must be at least 8 characters!').required('This field is required')
         }),
         onSubmit: (values) => {
-            Axios.post("http://localhost:3001/user/{props.loggedInUser.id}/change_email", {
+            Axios.post("https://go-electrical-server.herokuapp.com/user/{props.loggedInUser.id}/change_email", {
                 email: props.loggedInUser.email,
                 newEmail: values.newEmail
             }).then((response) => {

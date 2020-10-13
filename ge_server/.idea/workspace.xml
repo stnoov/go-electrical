@@ -19,17 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="">
+    <list default="true" id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="" />
+    <list id="6432384a-d7a6-4a34-ab36-2fdf09911381" name="change db credentials" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/balanceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/balanceModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/changeEmail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/changeEmail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/changePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/connections.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/connections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/searchBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/searchBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/searchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/sidebar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +55,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9381485e-4cd7-4dc7-ada8-63c342ef441d" name="Default Changelist" comment="" />
+      <changelist id="6432384a-d7a6-4a34-ab36-2fdf09911381" name="change db credentials" comment="" />
       <created>1601368776387</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -80,6 +73,8 @@
       <workItem from="1602256047124" duration="405000" />
       <workItem from="1602434571672" duration="7328000" />
       <workItem from="1602488355018" duration="2827000" />
+      <workItem from="1602605529265" duration="472000" />
+      <workItem from="1602606802344" duration="176000" />
     </task>
     <servers />
   </component>
@@ -99,22 +94,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="936" height="279" key="GridCell.Tab.0.bottom" timestamp="1601369837523">
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1602605583269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601369837523" />
-    <state width="936" height="279" key="GridCell.Tab.0.center" timestamp="1601369837523">
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602605583269" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1602605583269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601369837523" />
-    <state width="936" height="279" key="GridCell.Tab.0.left" timestamp="1601369837523">
+    <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602605583269" />
+    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1602605583269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601369837523" />
-    <state width="936" height="279" key="GridCell.Tab.0.right" timestamp="1601369837523">
+    <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602605583269" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1602605583269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601369837523" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602605583269" />
+    <state x="335" y="433" key="VCS.ChangelistChooser" timestamp="1602606975260">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="335" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602606975260" />
     <state x="980" y="242" key="run.anything.popup" timestamp="1601369053983">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
