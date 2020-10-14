@@ -4,6 +4,7 @@ import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/a
 import chargingStationPicture from "../img/charging_station.png";
 import Axios from "axios";
 import SearchBar from "./searchBar";
+import LoadingOverlay from 'react-loading-overlay';
 
 
 const mapContainerStyle = {
@@ -20,6 +21,7 @@ const options = {
 
  const Map = (props) => {
     const [stations, setStations] = useState([]);
+    console.log('stations: ', stations)
     useEffect(() => {
         Axios.get('https://go-electrical-server.herokuapp.com/stations_data').then((response) => {
             setStations(response.data);
@@ -36,11 +38,16 @@ const options = {
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps"
     return (
+
         <div>
             <SearchBar
                 setCenter={setCenter}
                 setZoom={setZoom}
             />
+            <LoadingOverlay
+                active={stations.length === 0}
+                spinner
+            >
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={zoom}
@@ -103,6 +110,7 @@ const options = {
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
+            </LoadingOverlay>
         </div>
     );
 }

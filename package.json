@@ -17,6 +17,7 @@
     "react": "^16.13.1",
     "react-autosuggest": "^10.0.2",
     "react-dom": "^16.13.1",
+    "react-loading-overlay": "^1.0.1",
     "react-modal": "^3.11.2",
     "react-notifications-component": "^2.4.1",
     "react-scripts": "3.4.3",
