@@ -30,7 +30,7 @@ export default function SearchBar(props) {
                                         'https://go-electrical-server.herokuapp.com/stations_data'
                                     )
                                     const result = response.data.filter((row) => {
-                                        return row.station_name.includes(value)
+                                        return row.station_name.toLowerCase().includes(value.toLowerCase())
                                     })
                                      setSuggestions(
                                          result.map((row) => ({
