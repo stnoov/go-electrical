@@ -31,7 +31,7 @@ const options = {
          lat: 65.0121,
          lng: 25.4651
      })
-    const [zoom, setZoom] = React.useState(13)
+    const [zoom, setZoom] = React.useState(10)
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: 'AIzaSyAcGZ0vhjGlVA0UZdmIUH76b_JacMm4A-c'
     });
