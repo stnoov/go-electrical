@@ -33,7 +33,7 @@ const options = {
      })
     const [zoom, setZoom] = React.useState(10)
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: 'AIzaSyDF6jCdmzBAElutQyu8_jM39uOQHXd9PcQ'
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API
     });
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps"
