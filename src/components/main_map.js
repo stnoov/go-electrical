@@ -44,10 +44,10 @@ const options = {
                 setCenter={setCenter}
                 setZoom={setZoom}
             />
-            <LoadingOverlay
-                active={stations.length === 0}
-                spinner
-            >
+            {/*<LoadingOverlay*/}
+            {/*    active={stations.length === 0}*/}
+            {/*    spinner*/}
+            {/*>*/}
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={zoom}
@@ -110,7 +110,7 @@ const options = {
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
-            </LoadingOverlay>
+            {/*</LoadingOverlay>*/}
         </div>
     );
 }

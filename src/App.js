@@ -83,7 +83,7 @@ function App() {
     }
   return (
 
-    <div>
+    <div className='main__page'>
         <ReactNotification />
         <Connections
             stopCharging={stopCharging}
