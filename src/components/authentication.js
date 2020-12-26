@@ -17,19 +17,22 @@ export default function Authentication(props) {
 
     return (
         <div>
-            <ArrowForwardIcon onClick={() => {
-                setMenuVisibility('visible')
-                setToggleVisibility('hidden')
-            }} style={{visibility: toggleVisibility}} className='sidebarToggle'/>
             <div className="sidenav" style={{visibility: menuVisibility}}>
-                <h2 className="logo" style={{
-                    display: 'inline',
-                    alignItems: 'center',
-                    marginRight: '100px'
-                }}><CropDinIcon className="logoIcon" /> | GoElectrical</h2> <ArrowBackIcon onClick={() => {
-                setMenuVisibility("hidden")
-                setToggleVisibility("visible")
-            }} style={{display: 'inline', cursor: 'pointer'}}/>
+                <ArrowForwardIcon onClick={() => {
+                    setMenuVisibility('visible')
+                    setToggleVisibility('hidden')
+                }} style={{visibility: toggleVisibility}} className='sidebarToggle'/>
+                <div className='sidenav-header-block'>
+                    <div className="sidenav_logo_block">
+                        <CropDinIcon className="logoIcon" />
+                        <h2 className="logo">| GoElectrical</h2>
+                    </div>
+                    <ArrowBackIcon className='sidenav_arrow_back' onClick={() => {
+                        setMenuVisibility("hidden")
+                        setToggleVisibility("visible")
+                    }}/>
+                </div>
+
 
                     <LoginForm
                         setLoggedIn={props.setLoggedIn}
